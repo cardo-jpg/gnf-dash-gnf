@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Gráfica NF — Dashboard de Performance</title>
+<title>Gráfica NF — Dashboard de Performance 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --bg:#f0f3ff;--card:#ffffff;--card2:#e8edf8;--brd:#d5dcf0;
-  --green:#15803d;--green2:#16a34a;--green3:#4ade80;
+  --bg:#f0f3ff;--card:#fff;--card2:#e8edf8;--brd:#d5dcf0;
+  --green:#15803d;--green2:#16a34a;
   --wh:#0c1d73;--mu:#6272a0;--mu2:#9ba8c8;
   --nav:#0c1d73;--nav2:#1d1f96;
 }
@@ -17,15 +17,13 @@
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--wh);min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(38,33,191,.04) 38px,rgba(38,33,191,.04) 40px);pointer-events:none;z-index:0;}
 
-/* gradient line */
 .gl{height:4px;background:linear-gradient(90deg,#15803d,#4285f4,#1877f2,#f59e0b,#15803d);background-size:300% 100%;animation:gm 4s linear infinite;}
 @keyframes gm{0%{background-position:0%}100%{background-position:300%}}
 
-/* HEADER */
-header{position:relative;z-index:1;background:linear-gradient(135deg,var(--nav),var(--nav2));border-bottom:none;}
-.hi{max-width:1300px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+header{position:relative;z-index:1;background:linear-gradient(135deg,var(--nav),var(--nav2));}
+.hi{max-width:1340px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
 .hl{display:flex;align-items:center;gap:16px;}
-.logo-box{width:54px;height:54px;border-radius:13px;background:linear-gradient(135deg,#15803d,#16a34a);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.45);letter-spacing:-1px;flex-shrink:0;}
+.logo-box{width:54px;height:54px;border-radius:13px;background:linear-gradient(135deg,#15803d,#16a34a);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.45);flex-shrink:0;}
 .ht .brand{display:flex;align-items:center;gap:7px;margin-bottom:4px;}
 .ht .brand .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;}
 .ht .brand span{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:1.5px;text-transform:uppercase;}
@@ -33,42 +31,36 @@ header{position:relative;z-index:1;background:linear-gradient(135deg,var(--nav),
 .ht h1 em{color:#4ade80;font-style:normal;}
 .ht p{font-size:.74rem;color:rgba(255,255,255,.5);margin-top:3px;}
 
-/* platform tabs */
 .ptabs{display:flex;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:9px;overflow:hidden;}
-.ptab{padding:8px 18px;font-size:.74rem;font-weight:800;cursor:pointer;color:rgba(255,255,255,.55);border:none;background:none;font-family:'Nunito',sans-serif;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:7px;letter-spacing:.3px;}
-.ptab svg{width:14px;height:14px;flex-shrink:0;}
+.ptab{padding:8px 18px;font-size:.74rem;font-weight:800;cursor:pointer;color:rgba(255,255,255,.55);border:none;background:none;font-family:'Nunito',sans-serif;transition:all .18s;display:flex;align-items:center;gap:7px;white-space:nowrap;}
 .ptab.active.meta-tab{background:rgba(24,119,242,.45);color:#fff;}
 .ptab.active.google-tab{background:rgba(66,133,244,.4);color:#fff;}
 .ptab:hover:not(.active){background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);}
 
-/* budget pills */
-.budget-bar{max-width:1300px;margin:0 auto;padding:10px 32px 0;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1;}
+.budget-bar{max-width:1340px;margin:0 auto;padding:10px 32px 0;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1;}
 .bpill{background:#fff;border:1px solid var(--brd);border-radius:20px;padding:5px 12px;font-size:.69rem;font-weight:800;color:var(--mu);display:flex;align-items:center;gap:6px;}
 .bpill .bdot{width:7px;height:7px;border-radius:50%;}
 .bpill.meta .bdot{background:#1877f2;}
 .bpill.google .bdot{background:#4285f4;}
 
-/* MAIN */
-main{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:24px 32px 80px;}
+main{position:relative;z-index:1;max-width:1340px;margin:0 auto;padding:24px 32px 80px;}
 
-/* period tabs */
 .period-wrap{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--brd);}
 .period-btn{padding:6px 12px;font-size:.69rem;font-weight:700;border-radius:6px;border:1px solid var(--brd);background:var(--card);color:var(--mu);cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s;white-space:nowrap;}
 .period-btn.active{background:var(--nav);color:#fff;border-color:var(--nav);}
 .period-btn:hover:not(.active){background:var(--card2);}
 
-/* section label */
 .slbl{font-size:.64rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--nav);display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:30px;}
 .slbl:first-child{margin-top:0;}
 .slbl::after{content:'';flex:1;height:1px;background:var(--brd);}
 
-/* KPI STRIP */
+/* KPI */
 .kstrip{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
 @media(max-width:1100px){.kstrip{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:580px){.kstrip{grid-template-columns:repeat(2,1fr);}}
 .kcard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:16px 14px;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(12,29,115,.08);}
 .kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;}
-.kcard.invest::before{background:var(--green2);}
+.kcard.invest::before{background:#16a34a;}
 .kcard.imp::before{background:#4285f4;}
 .kcard.clk::before{background:#1a73e8;}
 .kcard.leads::before{background:#15803d;}
@@ -76,42 +68,50 @@ main{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:24px 32p
 .kcard.cpl::before{background:#ea4335;}
 .klbl{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:8px;}
 .kval{font-size:1.45rem;font-weight:900;letter-spacing:-.5px;line-height:1;color:var(--nav);}
-.kval.gr{color:var(--green2);}
+.kval.gr{color:#16a34a;}
 .ksub{font-size:.67rem;color:var(--mu2);margin-top:5px;}
 
 /* CHART */
 .chart-wrap{background:var(--card);border:1px solid var(--brd);border-radius:15px;padding:24px 24px 16px;box-shadow:0 2px 12px rgba(12,29,115,.08);}
 
-/* CAMPAIGN CARDS */
-.camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;}
-@media(max-width:960px){.camp-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:580px){.camp-grid{grid-template-columns:1fr;}}
-.ccard{background:var(--card);border:1px solid var(--brd);border-radius:15px;padding:18px 18px 16px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;}
-.ccard:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(12,29,115,.13);}
-.ccard-bar{height:3px;border-radius:3px;margin-bottom:13px;}
-.camp-name{font-size:.84rem;font-weight:800;margin-bottom:13px;color:var(--nav);line-height:1.3;}
-.camp-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.cst-l{font-size:.59rem;color:var(--mu);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-.cst-v{font-size:.92rem;font-weight:900;color:var(--nav);margin-top:1px;}
-.cst-v.gr{color:var(--green2);}
-.cst-share{font-size:.69rem;font-weight:800;color:var(--mu);background:var(--card2);border-radius:5px;padding:2px 7px;display:inline-block;margin-top:3px;}
-
 /* FUNNEL */
 .funnel-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 @media(max-width:760px){.funnel-row{grid-template-columns:repeat(2,1fr);}}
-.fcard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:16px;text-align:center;position:relative;}
-.fcard::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 14px 14px;}
-.fcard.f1::before{background:#4285f4;}.fcard.f2::before{background:#f59e0b;}.fcard.f3::before{background:var(--green2);}.fcard.f4::before{background:#ea4335;}
-.fcard-ico{font-size:1.5rem;margin-bottom:6px;}
+.fcard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:16px;text-align:center;}
+.fcard::before{content:'';display:block;height:3px;border-radius:3px;margin-bottom:12px;}
+.fcard.f1::before{background:#4285f4;}.fcard.f2::before{background:#f59e0b;}
+.fcard.f3::before{background:#16a34a;}.fcard.f4::before{background:#ea4335;}
 .fcard-lbl{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:6px;}
 .fcard-v{font-size:1.4rem;font-weight:900;letter-spacing:-.5px;color:var(--nav);}
-.fcard-v.gr{color:var(--green2);}
+.fcard-v.gr{color:#16a34a;}
 .fcard-s{font-size:.67rem;color:var(--mu2);margin-top:3px;}
 
-/* GOOGLE NOTE */
-.gnote{background:#e8f0fe;border:1px solid #c5d5f8;border-radius:10px;padding:13px 16px;font-size:.77rem;color:#1a4089;display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;line-height:1.5;}
+/* CAMPAIGN TABLE */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--brd);box-shadow:0 2px 12px rgba(12,29,115,.08);}
+.camp-table{width:100%;border-collapse:collapse;background:var(--card);font-size:.8rem;}
+.camp-table thead th{background:var(--card2);color:var(--mu);font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:11px 14px;text-align:left;white-space:nowrap;border-bottom:2px solid var(--brd);}
+.camp-table thead th.right{text-align:right;}
+.camp-table tbody tr{border-bottom:1px solid var(--brd);transition:background .12s;}
+.camp-table tbody tr:last-child{border-bottom:none;}
+.camp-table tbody tr:hover td{background:#f7f9ff;}
+.camp-table tbody td{padding:10px 14px;vertical-align:middle;color:var(--wh);}
+.camp-table tbody td.right{text-align:right;}
+.camp-table tfoot td{padding:10px 14px;font-weight:800;font-size:.78rem;color:var(--nav);background:var(--card2);border-top:2px solid var(--brd);}
+.camp-table tfoot td.right{text-align:right;}
 
-/* FOOTER */
+.camp-tag{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:800;color:var(--nav);}
+.camp-tag .ctdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.pub-tag{font-size:.67rem;color:var(--mu);font-weight:600;background:var(--card2);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.num-green{font-weight:800;color:#16a34a;white-space:nowrap;}
+.num{font-weight:700;color:var(--nav);white-space:nowrap;}
+.num-muted{font-weight:600;color:var(--mu2);white-space:nowrap;}
+.share-lbl{font-size:.62rem;color:var(--mu2);display:block;margin-top:2px;}
+
+.type-badge{font-size:.64rem;font-weight:800;border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.type-badge.search{background:#e8f0fe;color:#1a4089;}
+.type-badge.pmax{background:#e6f4ea;color:#137333;}
+.type-badge.youtube{background:#fce8e6;color:#b31412;}
+
 footer{text-align:center;padding:30px 20px;font-size:.68rem;color:var(--mu2);position:relative;z-index:1;}
 footer strong{color:var(--mu);}
 </style>
@@ -125,25 +125,20 @@ footer strong{color:var(--mu);}
     <div class="hl">
       <div class="logo-box">NF</div>
       <div class="ht">
-        <div class="brand">
-          <div class="dot"></div>
-          <span>Cardo Marketing</span>
-        </div>
+        <div class="brand"><div class="dot"></div><span>Cardo Marketing</span></div>
         <h1>Gráfica NF <em>/ Grupo NF</em></h1>
-        <p>Dashboard de Performance — Campanhas Digitais</p>
+        <p>Dashboard de Performance 2026 — Campanhas Digitais</p>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-      <div class="ptabs">
-        <button class="ptab meta-tab active" id="tab-meta" onclick="setPlatform('meta')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
-          Meta Ads
-        </button>
-        <button class="ptab google-tab" id="tab-google" onclick="setPlatform('google')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Google Ads
-        </button>
-      </div>
+    <div class="ptabs">
+      <button class="ptab meta-tab active" id="tab-meta" onclick="setPlatform('meta')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+        Meta Ads
+      </button>
+      <button class="ptab google-tab" id="tab-google" onclick="setPlatform('google')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Google Ads
+      </button>
     </div>
   </div>
 </header>
@@ -156,11 +151,6 @@ footer strong{color:var(--mu);}
 <main>
   <div id="periodTabs" class="period-wrap"></div>
 
-  <div id="googleNote" class="gnote" style="display:none">
-    <span>ℹ️</span>
-    <span>Os dados do Google Ads na planilha cobrem o período de <strong>Julho a Novembro de 2023</strong>. Para visualizar os meses mais recentes, atualize a planilha de Google Ads com os dados atuais.</span>
-  </div>
-
   <div class="slbl">Resumo do Período</div>
   <div class="kstrip">
     <div class="kcard invest"><div class="klbl">Investimento</div><div class="kval gr" id="k-invest">—</div><div class="ksub" id="k-invest-s"></div></div>
@@ -171,24 +161,28 @@ footer strong{color:var(--mu);}
     <div class="kcard cpl"><div class="klbl">CPL Médio</div><div class="kval" id="k-cpl">—</div><div class="ksub">Custo por Lead</div></div>
   </div>
 
-  <div class="slbl">Evolução Mensal</div>
+  <div class="slbl">Evolução Mensal 2026</div>
   <div class="chart-wrap">
     <canvas id="mainChart" height="85"></canvas>
   </div>
 
-  <div id="funnelSection">
-    <div class="slbl">Jornada de Conversão</div>
-    <div class="funnel-row">
-      <div class="fcard f1"><div class="fcard-ico">👁️</div><div class="fcard-lbl">Impressões</div><div class="fcard-v" id="fn-imp">—</div><div class="fcard-s">alcance da campanha</div></div>
-      <div class="fcard f2"><div class="fcard-ico">🖱️</div><div class="fcard-lbl">Cliques</div><div class="fcard-v" id="fn-clk">—</div><div class="fcard-s" id="fn-clk-s">CTR —</div></div>
-      <div class="fcard f3"><div class="fcard-ico">💬</div><div class="fcard-lbl">Leads</div><div class="fcard-v gr" id="fn-leads">—</div><div class="fcard-s" id="fn-leads-s">conv. de cliques —</div></div>
-      <div class="fcard f4"><div class="fcard-ico">💰</div><div class="fcard-lbl">CPL</div><div class="fcard-v" id="fn-cpl">—</div><div class="fcard-s">custo por lead</div></div>
-    </div>
+  <div class="slbl">Jornada de Conversão</div>
+  <div class="funnel-row">
+    <div class="fcard f1"><div class="fcard-lbl">Impressões</div><div class="fcard-v" id="fn-imp">—</div><div class="fcard-s">alcance da campanha</div></div>
+    <div class="fcard f2"><div class="fcard-lbl">Cliques</div><div class="fcard-v" id="fn-clk">—</div><div class="fcard-s" id="fn-clk-s">—</div></div>
+    <div class="fcard f3"><div class="fcard-lbl">Leads</div><div class="fcard-v gr" id="fn-leads">—</div><div class="fcard-s" id="fn-leads-s">—</div></div>
+    <div class="fcard f4"><div class="fcard-lbl">CPL</div><div class="fcard-v" id="fn-cpl">—</div><div class="fcard-s">custo por lead</div></div>
   </div>
 
-  <div id="campaignSection" style="display:none">
-    <div class="slbl">Campanhas (Histórico Total)</div>
-    <div class="camp-grid" id="campGrid"></div>
+  <div id="campaignSection">
+    <div class="slbl" id="campLabel">Campanhas e Criativos — 2026</div>
+    <div class="table-wrap">
+      <table class="camp-table">
+        <thead id="campHead"></thead>
+        <tbody id="campBody"></tbody>
+        <tfoot id="campFoot"></tfoot>
+      </table>
+    </div>
   </div>
 </main>
 
@@ -197,260 +191,237 @@ footer strong{color:var(--mu);}
 </footer>
 
 <script>
-/* =====================================================
-   DATA
-   ===================================================== */
+/* ============================================================
+   DATA — somente 2026
+   ============================================================ */
 const META = {
   budget: 500,
   monthly: {
-    '2025-02':{label:'Fev/25',invest:87,  imp:2667, clk:22, leads:14},
-    '2025-03':{label:'Mar/25',invest:360, imp:10340,clk:69, leads:28},
-    '2025-04':{label:'Abr/25',invest:582, imp:14224,clk:97, leads:33},
-    '2025-05':{label:'Mai/25',invest:695, imp:19351,clk:101,leads:41},
-    '2025-06':{label:'Jun/25',invest:609, imp:15872,clk:81, leads:41},
-    '2025-07':{label:'Jul/25',invest:459, imp:12298,clk:55, leads:32},
-    '2025-08':{label:'Ago/25',invest:488, imp:15932,clk:71, leads:31},
-    '2025-09':{label:'Set/25',invest:541, imp:16320,clk:63, leads:30},
-    '2025-10':{label:'Out/25',invest:721, imp:22998,clk:79, leads:31},
-    '2025-11':{label:'Nov/25',invest:485, imp:9915, clk:59, leads:25},
-    '2025-12':{label:'Dez/25',invest:186, imp:3967, clk:17, leads:7 },
     '2026-01':{label:'Jan/26',invest:223, imp:7375, clk:27, leads:15},
     '2026-02':{label:'Fev/26',invest:222, imp:8110, clk:26, leads:7 },
     '2026-03':{label:'Mar/26',invest:147, imp:5399, clk:18, leads:11},
     '2026-04':{label:'Abr/26',invest:418, imp:14275,clk:77, leads:40},
   },
   campaigns:[
-    {name:'Cartela Fidelidade',   invest:2353,imp:66905,clk:365,leads:153,color:'#1877f2'},
-    {name:'Sacola Regiões',       invest:2186,imp:55073,clk:244,leads:112,color:'#16a34a'},
-    {name:'Cartela Regiões',      invest:790, imp:32597,clk:116,leads:41, color:'#f59e0b'},
-    {name:'Sacola',               invest:299, imp:7135, clk:58, leads:32, color:'#8b5cf6'},
-    {name:'Sacola Nat',           invest:155, imp:4210, clk:37, leads:23, color:'#ef4444'},
+    /* camp, cri, invest, imp, clk, leads, color */
+    {camp:'Sacola Regiões',  cri:'Regiões Clientes Sacolas', invest:519, imp:18169,clk:57, leads:23, color:'#16a34a'},
+    {camp:'Sacola',          cri:'Aberto',                   invest:186, imp:5542, clk:42, leads:22, color:'#1877f2'},
+    {camp:'Sacola Nat',      cri:'Aberto',                   invest:155, imp:4210, clk:37, leads:23, color:'#06b6d4'},
+    {camp:'Cartela',         cri:'Aberto',                   invest:140, imp:6605, clk:11, leads:5,  color:'#f59e0b'},
+    {camp:'Cartela',         cri:'Aberto V2',                invest:11,  imp:633,  clk:1,  leads:0,  color:'#fbbf24'},
   ]
 };
 
 const GOOGLE = {
   budget: 1200,
   monthly: {
-    '2023-07':{label:'Jul/23',invest:735,imp:30437,clk:1298,leads:632},
-    '2023-08':{label:'Ago/23',invest:712,imp:26427,clk:1127,leads:672},
-    '2023-09':{label:'Set/23',invest:803,imp:33312,clk:1395,leads:407},
-    '2023-10':{label:'Out/23',invest:610,imp:17921,clk:650, leads:31 },
-    '2023-11':{label:'Nov/23',invest:873,imp:10791,clk:598, leads:21 },
+    '2026-01':{label:'Jan/26',invest:462,  imp:4287, clk:425, leads:18},
+    '2026-02':{label:'Fev/26',invest:785,  imp:24501,clk:1797,leads:54},
+    '2026-03':{label:'Mar/26',invest:1038, imp:4516, clk:390, leads:15},
+    '2026-04':{label:'Abr/26',invest:1124, imp:4100, clk:246, leads:24},
   },
-  campaigns:[]
+  campaigns:[
+    /* camp, tipo, invest, imp, clk, leads, color */
+    {camp:'Institucional',       tipo:'Search', invest:1836,imp:6318, clk:366, leads:29, color:'#1a73e8'},
+    {camp:'Performance Max',     tipo:'P-Max',  invest:714, imp:23820,clk:1694,leads:62, color:'#16a34a'},
+    {camp:'Institucional 4',     tipo:'Search', invest:345, imp:667,  clk:45,  leads:3,  color:'#4285f4'},
+    {camp:'Performance Max New', tipo:'P-Max',  invest:336, imp:5900, clk:692, leads:17, color:'#34a853'},
+    {camp:'Pesquisa',            tipo:'Search', invest:176, imp:699,  clk:61,  leads:0,  color:'#93c5fd'},
+  ]
 };
 
-/* =====================================================
-   STATE
-   ===================================================== */
-let platform = 'meta';
-let period   = 'all';
-let chartObj = null;
+/* ============================================================
+   STATE & UTILS
+   ============================================================ */
+let platform='meta', period='all', chartObj=null;
 
-/* =====================================================
-   UTILS
-   ===================================================== */
-function R(v,dec=2){
-  return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:dec,maximumFractionDigits:dec});
-}
-function N(v){return v.toLocaleString('pt-BR');}
-
-function ds(){ return platform==='meta'?META:GOOGLE; }
+function ds(){return platform==='meta'?META:GOOGLE;}
+function R(v,d=2){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function N(v){return Math.round(v).toLocaleString('pt-BR');}
 
 function aggregate(per){
-  const entries = per==='all'
-    ? Object.values(ds().monthly)
-    : [ds().monthly[per]].filter(Boolean);
-  const invest = entries.reduce((s,v)=>s+v.invest,0);
-  const imp    = entries.reduce((s,v)=>s+v.imp,   0);
-  const clk    = entries.reduce((s,v)=>s+v.clk,   0);
-  const leads  = entries.reduce((s,v)=>s+v.leads,  0);
-  return {invest,imp,clk,leads,months:entries.length};
+  const entries=per==='all'
+    ?Object.values(ds().monthly)
+    :[ds().monthly[per]].filter(Boolean);
+  return {
+    invest:entries.reduce((s,v)=>s+v.invest,0),
+    imp:   entries.reduce((s,v)=>s+v.imp,0),
+    clk:   entries.reduce((s,v)=>s+v.clk,0),
+    leads: entries.reduce((s,v)=>s+v.leads,0),
+    months:entries.length
+  };
 }
 
-/* =====================================================
+/* ============================================================
    RENDER
-   ===================================================== */
+   ============================================================ */
 function renderHeader(){
-  document.getElementById('tab-meta').classList.toggle('active', platform==='meta');
-  document.getElementById('tab-google').classList.toggle('active', platform==='google');
-  document.getElementById('googleNote').style.display = platform==='google' ? 'flex' : 'none';
-  document.getElementById('campaignSection').style.display =
-    (platform==='meta') ? 'block' : 'none';
+  document.getElementById('tab-meta').classList.toggle('active',platform==='meta');
+  document.getElementById('tab-google').classList.toggle('active',platform==='google');
+  document.getElementById('campLabel').textContent=
+    platform==='meta'
+      ?'Campanhas e Criativos — 2026'
+      :'Campanhas — 2026';
 }
 
 function renderPeriodTabs(){
-  const keys = Object.keys(ds().monthly);
-  let html = `<button class="period-btn${period==='all'?' active':''}" onclick="setPeriod('all')">Geral (Todos)</button>`;
+  const keys=Object.keys(ds().monthly);
+  let html=`<button class="period-btn${period==='all'?' active':''}" onclick="setPeriod('all')">Geral (2026)</button>`;
   [...keys].reverse().forEach(k=>{
-    const m = ds().monthly[k];
-    html += `<button class="period-btn${period===k?' active':''}" onclick="setPeriod('${k}')">${m.label}</button>`;
+    const m=ds().monthly[k];
+    html+=`<button class="period-btn${period===k?' active':''}" onclick="setPeriod('${k}')">${m.label}</button>`;
   });
-  document.getElementById('periodTabs').innerHTML = html;
+  document.getElementById('periodTabs').innerHTML=html;
 }
 
 function renderKPIs(){
-  const {invest,imp,clk,leads,months} = aggregate(period);
-  const cpc = clk>0 ? invest/clk : 0;
-  const cpl = leads>0 ? invest/leads : 0;
-  const ctr = imp>0 && clk>0 ? (clk/imp*100) : 0;
+  const {invest,imp,clk,leads,months}=aggregate(period);
+  const cpc=clk>0?invest/clk:0;
+  const cpl=leads>0?invest/leads:0;
+  const ctr=imp>0&&clk>0?clk/imp*100:0;
 
-  document.getElementById('k-invest').textContent = R(invest);
-  document.getElementById('k-invest-s').textContent =
-    period==='all' ? `em ${months} meses` : `orç. fixo: ${R(ds().budget,0)}/mês`;
+  document.getElementById('k-invest').textContent=R(invest);
+  document.getElementById('k-invest-s').textContent=
+    period==='all'?`em ${months} meses • 2026`:`orç.: ${R(ds().budget,0)}/mês`;
+  document.getElementById('k-imp').textContent=N(imp);
+  document.getElementById('k-imp-s').textContent=
+    period==='all'&&months>1?`média ${N(imp/months)}/mês`:'';
+  document.getElementById('k-clk').textContent=N(clk);
+  document.getElementById('k-clk-s').textContent=ctr>0?`CTR ${ctr.toFixed(2).replace('.',',')}%`:'';
+  document.getElementById('k-leads').textContent=N(leads);
+  document.getElementById('k-leads-s').textContent=
+    period==='all'&&months>1?`média ${(leads/months).toFixed(1).replace('.',',')} leads/mês`:'';
+  document.getElementById('k-cpc').textContent=cpc>0?R(cpc):'—';
+  document.getElementById('k-cpl').textContent=cpl>0?R(cpl):'—';
 
-  document.getElementById('k-imp').textContent = N(imp);
-  document.getElementById('k-imp-s').textContent =
-    period==='all' && months>1 ? `média ${N(Math.round(imp/months))}/mês` : '';
-
-  document.getElementById('k-clk').textContent = N(clk);
-  document.getElementById('k-clk-s').textContent =
-    ctr>0 ? `CTR ${ctr.toFixed(2).replace('.',',')}%` : '';
-
-  document.getElementById('k-leads').textContent = N(leads);
-  document.getElementById('k-leads-s').textContent =
-    period==='all' && months>1 ? `média ${(leads/months).toFixed(1).replace('.',',')} leads/mês` : '';
-
-  document.getElementById('k-cpc').textContent = cpc>0 ? R(cpc) : '—';
-  document.getElementById('k-cpl').textContent = cpl>0 ? R(cpl) : '—';
-
-  // funnel
-  document.getElementById('fn-imp').textContent   = N(imp);
-  document.getElementById('fn-clk').textContent   = N(clk);
-  document.getElementById('fn-clk-s').textContent = ctr>0 ? `CTR ${ctr.toFixed(2).replace('.',',')}%` : '';
-  document.getElementById('fn-leads').textContent = N(leads);
-  document.getElementById('fn-leads-s').textContent =
-    clk>0 && leads>0 ? `conv. ${(leads/clk*100).toFixed(1).replace('.',',')}% dos cliques` : '';
-  document.getElementById('fn-cpl').textContent   = cpl>0 ? R(cpl) : '—';
+  document.getElementById('fn-imp').textContent=N(imp);
+  document.getElementById('fn-clk').textContent=N(clk);
+  document.getElementById('fn-clk-s').textContent=ctr>0?`CTR ${ctr.toFixed(2).replace('.',',')}%`:'—';
+  document.getElementById('fn-leads').textContent=N(leads);
+  document.getElementById('fn-leads-s').textContent=
+    clk>0&&leads>0?`${(leads/clk*100).toFixed(1).replace('.',',')}% dos cliques`:'—';
+  document.getElementById('fn-cpl').textContent=cpl>0?R(cpl):'—';
 }
 
 function renderChart(){
-  const data   = ds();
-  const keys   = Object.keys(data.monthly);
-  const labels = keys.map(k=>data.monthly[k].label);
-  const invests= keys.map(k=>data.monthly[k].invest);
-  const leads  = keys.map(k=>data.monthly[k].leads);
-  const clks   = keys.map(k=>data.monthly[k].clk);
-  const selIdx = period!=='all' ? keys.indexOf(period) : -1;
+  const data=ds();
+  const keys=Object.keys(data.monthly);
+  const labels=keys.map(k=>data.monthly[k].label);
+  const invests=keys.map(k=>data.monthly[k].invest);
+  const leads=keys.map(k=>data.monthly[k].leads);
+  const clks=keys.map(k=>data.monthly[k].clk);
+  const sel=period!=='all'?keys.indexOf(period):-1;
 
-  const barBg = keys.map((_,i)=>
-    selIdx>=0 ? (i===selIdx?'rgba(21,128,61,.85)':'rgba(12,29,115,.18)')
-              : 'rgba(12,29,115,.62)'
+  const barBg=keys.map((_,i)=>
+    sel>=0?(i===sel?'rgba(21,128,61,.85)':'rgba(12,29,115,.18)')
+          :'rgba(12,29,115,.65)'
   );
 
-  const cfg = {
+  const ctx=document.getElementById('mainChart').getContext('2d');
+  if(chartObj) chartObj.destroy();
+  chartObj=new Chart(ctx,{
     data:{
       labels,
       datasets:[
         {type:'bar',label:'Investimento (R$)',data:invests,backgroundColor:barBg,
-         borderRadius:5,yAxisID:'y',order:3},
+         borderRadius:6,yAxisID:'y',order:3},
         {type:'line',label:'Leads',data:leads,borderColor:'#15803d',
          backgroundColor:'rgba(21,128,61,.08)',fill:true,
-         pointBackgroundColor:keys.map((_,i)=>i===selIdx?'#15803d':'rgba(21,128,61,.55)'),
-         pointRadius:4,pointHoverRadius:6,tension:.35,yAxisID:'y2',order:1},
+         pointBackgroundColor:keys.map((_,i)=>i===sel?'#15803d':'rgba(21,128,61,.6)'),
+         pointRadius:5,pointHoverRadius:7,tension:.35,yAxisID:'y2',order:1},
         {type:'line',label:'Cliques',data:clks,borderColor:'#4285f4',
          backgroundColor:'transparent',borderDash:[5,3],
-         pointBackgroundColor:'#4285f4',pointRadius:3,tension:.35,yAxisID:'y2',order:2},
+         pointBackgroundColor:'#4285f4',pointRadius:4,tension:.35,yAxisID:'y2',order:2},
       ]
     },
     options:{
       responsive:true,
       interaction:{mode:'index',intersect:false},
       plugins:{
-        legend:{labels:{font:{family:'Nunito',weight:'700',size:11},color:'#6272a0',
-          boxWidth:14,boxHeight:14}},
+        legend:{labels:{font:{family:'Nunito',weight:'700',size:11},color:'#6272a0',boxWidth:14,boxHeight:14}},
         tooltip:{
           backgroundColor:'rgba(12,29,115,.95)',
           titleFont:{family:'Nunito',weight:'800'},
           bodyFont:{family:'Nunito'},
           padding:12,
           callbacks:{
-            label(ctx){
-              if(ctx.dataset.label.startsWith('Invest'))
-                return `  ${ctx.dataset.label}: R$ ${ctx.raw.toLocaleString('pt-BR')}`;
-              return `  ${ctx.dataset.label}: ${ctx.raw.toLocaleString('pt-BR')}`;
+            label(c){
+              if(c.dataset.label.startsWith('Invest'))
+                return `  ${c.dataset.label}: R$ ${c.raw.toLocaleString('pt-BR')}`;
+              return `  ${c.dataset.label}: ${c.raw.toLocaleString('pt-BR')}`;
             }
           }
         }
       },
       scales:{
-        x:{grid:{color:'rgba(0,0,0,.04)'},
-          ticks:{font:{family:'Nunito',weight:'700',size:10},color:'#9ba8c8'}},
+        x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',weight:'700',size:11},color:'#9ba8c8'}},
         y:{position:'left',grid:{color:'rgba(0,0,0,.04)'},
-          ticks:{font:{family:'Nunito',size:10},color:'#9ba8c8',
-            callback:v=>'R$ '+v.toLocaleString('pt-BR')}},
-        y2:{position:'right',grid:{drawOnChartArea:false},
-          ticks:{font:{family:'Nunito',size:10},color:'#9ba8c8'}}
+          ticks:{font:{family:'Nunito',size:10},color:'#9ba8c8',callback:v=>'R$ '+v.toLocaleString('pt-BR')}},
+        y2:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{family:'Nunito',size:10},color:'#9ba8c8'}}
       }
     }
-  };
-
-  const ctx = document.getElementById('mainChart').getContext('2d');
-  if(chartObj) chartObj.destroy();
-  chartObj = new Chart(ctx,cfg);
+  });
 }
 
-function renderCampaigns(){
-  if(platform!=='meta') return;
-  const section = document.getElementById('campaignSection');
-  const grid    = document.getElementById('campGrid');
-  const camps   = META.campaigns;
-  const totalInvest = camps.reduce((s,c)=>s+c.invest,0);
+function renderCampTable(){
+  const isMeta=platform==='meta';
+  const camps=ds().campaigns;
+  const ti=camps.reduce((s,c)=>s+c.invest,0);
+  const tm=camps.reduce((s,c)=>s+c.imp,0);
+  const tc=camps.reduce((s,c)=>s+c.clk,0);
+  const tl=camps.reduce((s,c)=>s+c.leads,0);
 
-  grid.innerHTML = camps.map(c=>{
-    const cpl   = c.leads>0 ? c.invest/c.leads : 0;
-    const cpc   = c.clk>0   ? c.invest/c.clk   : 0;
-    const share = totalInvest>0 ? (c.invest/totalInvest*100).toFixed(0) : 0;
-    return `<div class="ccard">
-      <div class="ccard-bar" style="background:${c.color}"></div>
-      <div class="camp-name">${c.name}</div>
-      <div class="camp-stats">
-        <div>
-          <div class="cst-l">Investimento</div>
-          <div class="cst-v gr">R$ ${c.invest.toLocaleString('pt-BR')}</div>
-          <div class="cst-share">${share}% do total</div>
-        </div>
-        <div>
-          <div class="cst-l">Impressões</div>
-          <div class="cst-v">${c.imp.toLocaleString('pt-BR')}</div>
-        </div>
-        <div>
-          <div class="cst-l">Cliques</div>
-          <div class="cst-v">${c.clk.toLocaleString('pt-BR')}</div>
-        </div>
-        <div>
-          <div class="cst-l">Leads</div>
-          <div class="cst-v gr">${c.leads}</div>
-        </div>
-        <div>
-          <div class="cst-l">CPL</div>
-          <div class="cst-v">${cpl>0?'R$ '+cpl.toFixed(2).replace('.',','):'—'}</div>
-        </div>
-        <div>
-          <div class="cst-l">CPC</div>
-          <div class="cst-v">${cpc>0?'R$ '+cpc.toFixed(2).replace('.',','):'—'}</div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  /* HEAD */
+  const cols=isMeta
+    ?['#','Campanha','Criativo / Público','Investimento','Impressões','Cliques','Leads','CPC','CPL']
+    :['#','Campanha','Tipo','Investimento','Impressões','Cliques','Leads','CPC','CPL'];
+  const rightCols=[3,4,5,6,7,8];
+  document.getElementById('campHead').innerHTML=
+    `<tr>${cols.map((h,i)=>`<th class="${rightCols.includes(i)?'right':''}">${h}</th>`).join('')}</tr>`;
+
+  /* BODY */
+  let tbody='';
+  camps.forEach((c,i)=>{
+    const cpl=c.leads>0?c.invest/c.leads:0;
+    const cpc=c.clk>0?c.invest/c.clk:0;
+    const share=(c.invest/ti*100).toFixed(0);
+    const col2=isMeta
+      ?`<span class="pub-tag">${c.cri}</span>`
+      :`<span class="type-badge ${c.tipo==='Search'?'search':c.tipo==='P-Max'?'pmax':'youtube'}">${c.tipo}</span>`;
+    tbody+=`<tr>
+      <td style="text-align:center;font-size:.7rem;font-weight:800;color:var(--mu2)">${i+1}</td>
+      <td><span class="camp-tag"><span class="ctdot" style="background:${c.color}"></span>${c.camp}</span></td>
+      <td>${col2}</td>
+      <td class="right"><span class="num-green">R$ ${c.invest.toLocaleString('pt-BR')}</span><span class="share-lbl">${share}% do total</span></td>
+      <td class="right"><span class="num">${N(c.imp)}</span></td>
+      <td class="right"><span class="num">${N(c.clk)}</span></td>
+      <td class="right"><span class="num-green">${c.leads}</span></td>
+      <td class="right"><span class="${cpc>0?'num':'num-muted'}">${cpc>0?R(cpc):'—'}</span></td>
+      <td class="right"><span class="${cpl>0?'num':'num-muted'}">${cpl>0?R(cpl):'—'}</span></td>
+    </tr>`;
+  });
+  document.getElementById('campBody').innerHTML=tbody;
+
+  /* FOOT */
+  const fcpc=tc>0?ti/tc:0; const fcpl=tl>0?ti/tl:0;
+  document.getElementById('campFoot').innerHTML=`<tr>
+    <td style="text-align:center">—</td>
+    <td colspan="2"><strong>Total</strong></td>
+    <td class="right">R$ ${ti.toLocaleString('pt-BR')}</td>
+    <td class="right">${N(tm)}</td>
+    <td class="right">${N(tc)}</td>
+    <td class="right">${tl}</td>
+    <td class="right">${fcpc>0?R(fcpc):'—'}</td>
+    <td class="right">${fcpl>0?R(fcpl):'—'}</td>
+  </tr>`;
 }
 
-/* =====================================================
+/* ============================================================
    ACTIONS
-   ===================================================== */
-function setPlatform(p){
-  platform=p; period='all'; render();
-}
-function setPeriod(p){
-  period=p; render();
-}
-function render(){
-  renderHeader();
-  renderPeriodTabs();
-  renderKPIs();
-  renderChart();
-  renderCampaigns();
-}
+   ============================================================ */
+function setPlatform(p){platform=p;period='all';render();}
+function setPeriod(p){period=p;render();}
+function render(){renderHeader();renderPeriodTabs();renderKPIs();renderChart();renderCampTable();}
 
 render();
 </script>
