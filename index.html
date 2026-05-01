@@ -82,27 +82,37 @@ main{position:relative;z-index:1;max-width:1340px;margin:0 auto;padding:22px 32p
 
 /* TABLE */
 .table-wrap{overflow-x:auto;border-radius:13px;border:1px solid var(--brd);box-shadow:0 2px 10px rgba(12,29,115,.07);}
-.camp-table{width:100%;border-collapse:collapse;background:var(--card);font-size:.76rem;}
-.camp-table thead th{background:var(--card2);color:var(--mu);font-size:.58rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;padding:9px 12px;text-align:right;white-space:nowrap;border-bottom:2px solid var(--brd);}
-.camp-table thead th:nth-child(1){text-align:center;width:28px;}
-.camp-table thead th:nth-child(2),.camp-table thead th:nth-child(3){text-align:left;}
+.camp-table{width:100%;border-collapse:collapse;background:var(--card);font-size:.76rem;table-layout:fixed;}
+.camp-table colgroup col.c-num  {width:28px;}
+.camp-table colgroup col.c-camp {width:130px;}
+.camp-table colgroup col.c-cri  {width:110px;}
+.camp-table colgroup col.c-inv  {width:90px;}
+.camp-table colgroup col.c-imp  {width:68px;}
+.camp-table colgroup col.c-clk  {width:60px;}
+.camp-table colgroup col.c-lds  {width:50px;}
+.camp-table colgroup col.c-cpc  {width:70px;}
+.camp-table colgroup col.c-cpl  {width:70px;}
+.camp-table thead th{background:var(--card2);color:var(--mu);font-size:.57rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:9px 10px;text-align:right;white-space:nowrap;border-bottom:2px solid var(--brd);overflow:hidden;}
+.camp-table thead th.tl{text-align:left;}
+.camp-table thead th.tc{text-align:center;}
 .camp-table tbody tr{border-bottom:1px solid var(--brd);transition:background .1s;}
 .camp-table tbody tr:last-child{border-bottom:none;}
 .camp-table tbody tr:hover td{background:#f5f7ff;}
-.camp-table tbody td{padding:9px 12px;vertical-align:middle;text-align:right;}
-.camp-table tbody td:nth-child(1){text-align:center;font-size:.66rem;font-weight:800;color:var(--mu2);}
-.camp-table tbody td:nth-child(2),.camp-table tbody td:nth-child(3){text-align:left;}
-.camp-table tfoot td{padding:9px 12px;font-weight:800;font-size:.74rem;color:var(--nav);background:var(--card2);border-top:2px solid var(--brd);text-align:right;}
-.camp-table tfoot td:nth-child(1){text-align:center;}
-.camp-table tfoot td:nth-child(2){text-align:left;}
+.camp-table tbody td{padding:8px 10px;vertical-align:middle;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.camp-table tbody td.tc{text-align:center;}
+.camp-table tbody td.tl{text-align:left;}
+.camp-table tfoot td{padding:9px 10px;font-weight:800;font-size:.74rem;color:var(--nav);background:var(--card2);border-top:2px solid var(--brd);text-align:right;white-space:nowrap;}
+.camp-table tfoot td.tc{text-align:center;}
+.camp-table tfoot td.tl{text-align:left;}
 
-.ctag{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;font-weight:800;color:var(--nav);}
+.ctag{display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:800;color:var(--nav);overflow:hidden;}
 .ctag .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.pub-badge{font-size:.62rem;color:var(--mu);font-weight:700;background:var(--card2);border-radius:4px;padding:2px 6px;white-space:nowrap;}
-.vg{font-weight:800;color:#16a34a;white-space:nowrap;}
-.vn{font-weight:700;color:var(--nav);white-space:nowrap;}
+.ctag span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pub-badge{font-size:.6rem;color:var(--mu);font-weight:700;background:var(--card2);border-radius:4px;padding:2px 5px;white-space:nowrap;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+.vg{font-weight:800;color:#16a34a;}
+.vn{font-weight:700;color:var(--nav);}
 .vm{font-weight:600;color:var(--mu2);}
-.share{font-size:.6rem;color:var(--mu2);display:block;}
+.share{font-size:.58rem;color:var(--mu2);display:block;}
 
 .type-badge{font-size:.6rem;font-weight:800;border-radius:4px;padding:2px 6px;white-space:nowrap;}
 .type-badge.search{background:#e8f0fe;color:#1a4089;}
@@ -167,8 +177,9 @@ footer strong{color:var(--mu);}
 
       <div class="table-wrap">
         <table class="camp-table">
+          <colgroup><col class="c-num"><col class="c-camp"><col class="c-cri"><col class="c-inv"><col class="c-imp"><col class="c-clk"><col class="c-lds"><col class="c-cpc"><col class="c-cpl"></colgroup>
           <thead><tr>
-            <th>#</th><th>Campanha</th><th>Criativo / Público</th>
+            <th class="tc">#</th><th class="tl">Campanha</th><th class="tl">Criativo / Público</th>
             <th>Invest.</th><th>Imp.</th><th>Cliques</th><th>Leads</th><th>CPC</th><th>CPL</th>
           </tr></thead>
           <tbody id="metaCampBody"></tbody>
@@ -203,8 +214,9 @@ footer strong{color:var(--mu);}
 
       <div class="table-wrap">
         <table class="camp-table">
+          <colgroup><col class="c-num"><col class="c-camp"><col class="c-cri"><col class="c-inv"><col class="c-imp"><col class="c-clk"><col class="c-lds"><col class="c-cpc"><col class="c-cpl"></colgroup>
           <thead><tr>
-            <th>#</th><th>Campanha</th><th>Tipo</th>
+            <th class="tc">#</th><th class="tl">Campanha</th><th class="tl">Tipo</th>
             <th>Invest.</th><th>Imp.</th><th>Cliques</th><th>Leads</th><th>CPC</th><th>CPL</th>
           </tr></thead>
           <tbody id="googleCampBody"></tbody>
@@ -384,10 +396,9 @@ function renderChart(ds, canvasId, existing, barColor){
    ============================================================ */
 function renderTable(ds, bodyId, footId, isMeta){
   const camps = ds.campaigns;
-  const ti = camps.reduce((s,c)=>s+c.invest,0);
-  const tm = camps.reduce((s,c)=>s+c.imp,0);
-  const tc = camps.reduce((s,c)=>s+c.clk,0);
-  const tl = camps.reduce((s,c)=>s+c.leads,0);
+  // usa dados mensais para o total — mesma fonte dos KPI cards
+  const tot   = agg(ds, 'all');
+  const ti    = camps.reduce((s,c)=>s+c.invest,0); // para share %
 
   let html='';
   camps.forEach((c,i)=>{
@@ -398,28 +409,30 @@ function renderTable(ds, bodyId, footId, isMeta){
       ?`<span class="pub-badge">${c.cri}</span>`
       :`<span class="type-badge ${c.tipo==='Search'?'search':'pmax'}">${c.tipo}</span>`;
     html+=`<tr>
-      <td>${i+1}</td>
-      <td><span class="ctag"><span class="dot" style="background:${c.color}"></span>${c.camp}</span></td>
-      <td>${col2}</td>
+      <td class="tc">${i+1}</td>
+      <td class="tl"><span class="ctag"><span class="dot" style="background:${c.color}"></span><span>${c.camp}</span></span></td>
+      <td class="tl">${col2}</td>
       <td><span class="vg">R$ ${c.invest.toLocaleString('pt-BR')}</span><span class="share">${sh}%</span></td>
-      <td><span class="vn">${N(c.imp)}</span></td>
-      <td><span class="vn">${N(c.clk)}</span></td>
-      <td><span class="vg">${c.leads}</span></td>
-      <td><span class="${cpc>0?'vn':'vm'}">${cpc>0?R(cpc):'—'}</span></td>
-      <td><span class="${cpl>0?'vn':'vm'}">${cpl>0?R(cpl):'—'}</span></td>
+      <td class="vn">${N(c.imp)}</td>
+      <td class="vn">${N(c.clk)}</td>
+      <td class="vg">${c.leads}</td>
+      <td class="${cpc>0?'vn':'vm'}">${cpc>0?R(cpc):'—'}</td>
+      <td class="${cpl>0?'vn':'vm'}">${cpl>0?R(cpl):'—'}</td>
     </tr>`;
   });
   document.getElementById(bodyId).innerHTML=html;
 
-  const fcpc=tc>0?ti/tc:0, fcpl=tl>0?ti/tl:0;
+  // rodapé usa totais mensais (= mesmos valores dos KPI cards no período Geral)
+  const fcpc=tot.clk>0?tot.invest/tot.clk:0;
+  const fcpl=tot.leads>0?tot.invest/tot.leads:0;
   document.getElementById(footId).innerHTML=`<tr>
-    <td>—</td>
-    <td>Total</td>
+    <td class="tc">—</td>
+    <td class="tl">Total 2026</td>
     <td></td>
-    <td>R$ ${ti.toLocaleString('pt-BR')}</td>
-    <td>${N(tm)}</td>
-    <td>${N(tc)}</td>
-    <td>${tl}</td>
+    <td>R$ ${Math.round(tot.invest).toLocaleString('pt-BR')}</td>
+    <td>${N(tot.imp)}</td>
+    <td>${N(tot.clk)}</td>
+    <td>${tot.leads}</td>
     <td>${fcpc>0?R(fcpc):'—'}</td>
     <td>${fcpl>0?R(fcpl):'—'}</td>
   </tr>`;
