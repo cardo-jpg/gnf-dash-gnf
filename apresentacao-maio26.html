@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gráfica NF — Reunião de Performance · Maio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif;background:#0a0f1e;}
+
+/* DECK */
+.deck{width:100%;height:100%;position:relative;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:64px 80px;opacity:0;pointer-events:none;transition:opacity .4s ease,transform .4s ease;transform:translateX(60px);}
+.slide.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.slide.out{opacity:0;transform:translateX(-60px);}
+
+/* NAV */
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;}
+.nav-dot.active{background:#4ade80;width:24px;border-radius:4px;}
+.nav-arr{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.nav-arr:hover{background:rgba(255,255,255,.12);}
+.slide-num{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.3);min-width:60px;text-align:center;}
+
+/* SLIDE BACKGROUNDS */
+.s-cover{background:linear-gradient(135deg,#0d1b3e 0%,#0f2a1a 100%);}
+.s-dark{background:#0d1b2e;}
+.s-green{background:linear-gradient(135deg,#0a1f10 0%,#0d1b3e 100%);}
+.s-mid{background:linear-gradient(135deg,#111827 0%,#0d2030 100%);}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:5px 14px;font-size:.72rem;font-weight:800;color:#4ade80;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+.badge-blue{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.3);color:#60a5fa;}
+.badge-orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:#fb923c;}
+
+/* TYPOGRAPHY */
+h1{font-size:3.2rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.5px;}
+h1 em{color:#4ade80;font-style:normal;}
+h2{font-size:2rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;}
+h2 em{color:#4ade80;font-style:normal;}
+.sub{font-size:1rem;color:rgba(255,255,255,.5);margin-top:12px;font-weight:600;}
+.lead{font-size:1.1rem;color:rgba(255,255,255,.75);line-height:1.65;max-width:760px;}
+
+/* DIVIDER */
+.div{height:1px;background:rgba(255,255,255,.08);margin:24px 0;}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 20px;position:relative;overflow:hidden;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.stat-box.c1::before{background:#4ade80;}
+.stat-box.c2::before{background:#60a5fa;}
+.stat-box.c3::before{background:#f59e0b;}
+.stat-box.c4::before{background:#f87171;}
+.stat-lbl{font-size:.62rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;}
+.stat-v{font-size:2rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.5px;}
+.stat-v.green{color:#4ade80;}
+.stat-v.red{color:#f87171;}
+.stat-s{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:6px;}
+
+/* TIMELINE */
+.timeline{display:flex;gap:0;margin-top:36px;}
+.tl-item{flex:1;position:relative;padding:0 20px 0 0;}
+.tl-item::after{content:'→';position:absolute;right:-4px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.2);font-size:1.2rem;}
+.tl-item:last-child::after{display:none;}
+.tl-month{font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px;}
+.tl-box{border-radius:12px;padding:16px 18px;font-size:.9rem;font-weight:800;color:#fff;line-height:1.3;}
+.tl-box.bad{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.25);}
+.tl-box.ok{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:#fbbf24;}
+.tl-box.good{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:#4ade80;}
+
+/* GROUPS */
+.group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.group-card{border-radius:14px;padding:22px 20px;}
+.group-card.g1{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);}
+.group-card.g2{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);}
+.group-card.g3{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);}
+.group-num{font-size:2.2rem;font-weight:900;margin-bottom:4px;}
+.g1 .group-num{color:#f87171;}
+.g2 .group-num{color:#fbbf24;}
+.g3 .group-num{color:#4ade80;}
+.group-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:10px;}
+.group-desc{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.55;}
+
+/* PRODUCT LIST */
+.prod-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.prod-tag{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;}
+.prod-name{font-size:.8rem;font-weight:800;color:#fff;}
+.prod-n{font-size:.75rem;font-weight:900;color:#4ade80;margin-left:4px;}
+
+/* GEO */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+.geo-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;}
+.geo-region{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.geo-v{font-size:1.4rem;font-weight:900;color:#60a5fa;}
+.geo-s{font-size:.68rem;color:rgba(255,255,255,.35);margin-top:2px;}
+
+/* LEAD LIST */
+.lead-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;}
+.lead-item{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;}
+.lead-num{width:26px;height:26px;border-radius:50%;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:#4ade80;flex-shrink:0;margin-top:1px;}
+.lead-name{font-size:.85rem;font-weight:800;color:#fff;}
+.lead-desc{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;}
+.lead-tag{font-size:.6rem;font-weight:800;border-radius:4px;padding:2px 7px;white-space:nowrap;margin-top:4px;display:inline-block;}
+.lt-hot{background:rgba(248,113,113,.15);color:#f87171;}
+.lt-warm{background:rgba(251,191,36,.15);color:#fbbf24;}
+.lt-recu{background:rgba(74,222,128,.15);color:#4ade80;}
+
+/* PROBLEM */
+.prob-list{display:flex;flex-direction:column;gap:14px;margin-top:28px;}
+.prob-item{display:flex;gap:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid #f87171;border-radius:0 12px 12px 0;padding:16px 18px;}
+.prob-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.prob-title{font-size:.85rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.prob-desc{font-size:.74rem;color:rgba(255,255,255,.5);line-height:1.55;}
+
+/* NEXT STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px;}
+.step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;}
+.step-n{width:32px;height:32px;border-radius:8px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:#4ade80;flex-shrink:0;}
+.step-title{font-size:.82rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.step-desc{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* HIGHLIGHT BOX */
+.hl-box{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:16px;padding:24px 28px;margin-top:28px;}
+.hl-box h3{font-size:1rem;font-weight:900;color:#4ade80;margin-bottom:8px;}
+.hl-box p{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.65;}
+
+/* LOGO */
+.logo{display:flex;align-items:center;gap:10px;position:fixed;top:24px;left:32px;z-index:100;}
+.logo-box{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#15803d,#22c55e);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:#fff;}
+.logo-name{font-size:.7rem;font-weight:800;color:rgba(255,255,255,.4);letter-spacing:.5px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <div class="logo-box">NF</div>
+  <span class="logo-name">CARDO MARKETING</span>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — CAPA -->
+  <div class="slide s-cover active" data-slide="0">
+    <div class="badge">📊 Reunião de Performance</div>
+    <h1>Análise de Abril<br>e <em>Estratégia de Maio</em></h1>
+    <p class="sub">Gráfica NF / Grupo NF &nbsp;·&nbsp; Maio de 2026 &nbsp;·&nbsp; Cardo Marketing</p>
+    <div class="div"></div>
+    <p class="lead">113 leads recebidos em abril. 1 venda fechada.<br>Vamos entender o que aconteceu e o que fazer agora.</p>
+  </div>
+
+  <!-- SLIDE 2 — CONTEXTO -->
+  <div class="slide s-dark" data-slide="1">
+    <div class="badge badge-blue">Contexto</div>
+    <h2>A trajetória <em>dos últimos meses</em></h2>
+    <p class="lead">Fevereiro ruim, março de recuperação, abril com o primeiro fechamento relevante do ano.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-month">Fevereiro/26</div>
+        <div class="tl-box bad">Mês muito fraco.<br>Baixa conversão e volume.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">Março/26</div>
+        <div class="tl-box ok">Recuperação.<br>Mês bacana em resultado.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">Abril/26</div>
+        <div class="tl-box good">113 leads + 1 fechamento:<br>R$ 7.980,00 via Google Ads.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-month">Maio/26</div>
+        <div class="tl-box" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5)">Oportunidade em<br>pipeline. É agir agora.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — NÚMEROS -->
+  <div class="slide s-mid" data-slide="2">
+    <div class="badge">Abril em números</div>
+    <h2>113 leads. <em>1 venda.</em></h2>
+    <div class="stat-grid">
+      <div class="stat-box c1">
+        <div class="stat-lbl">Leads recebidos</div>
+        <div class="stat-v green">113</div>
+        <div class="stat-s">no mês de abril</div>
+      </div>
+      <div class="stat-box c2">
+        <div class="stat-lbl">Vendas fechadas</div>
+        <div class="stat-v">1</div>
+        <div class="stat-s">R$ 7.980,00</div>
+      </div>
+      <div class="stat-box c3">
+        <div class="stat-lbl">Taxa de conversão</div>
+        <div class="stat-v" style="color:#f59e0b">0,9%</div>
+        <div class="stat-s">1 em cada 113</div>
+      </div>
+      <div class="stat-box c4">
+        <div class="stat-lbl">Leads sem qualificação</div>
+        <div class="stat-v red">51</div>
+        <div class="stat-s">só telefone, sem contexto</div>
+      </div>
+    </div>
+    <div class="hl-box" style="margin-top:20px;">
+      <h3>O volume não é o problema.</h3>
+      <p>113 leads num mês é um número razoável. O desafio está em qualidade e conversão — e é isso que vamos atacar em maio.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — GENERAL LINHAS -->
+  <div class="slide s-green" data-slide="3">
+    <div class="badge">O fechamento do mês</div>
+    <div class="two-col">
+      <div>
+        <h2><em>General Linhas</em><br>R$ 7.980,00</h2>
+        <p class="lead" style="margin-top:16px;">O único fechamento de abril, e o mais importante do trimestre.</p>
+        <div class="div"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:10px;align-items:center;"><span style="color:#4ade80;font-size:.8rem;font-weight:800;">📦 Produto</span><span style="color:rgba(255,255,255,.7);font-size:.8rem;">Cartelas de cores</span></div>
+          <div style="display:flex;gap:10px;align-items:center;"><span style="color:#4ade80;font-size:.8rem;font-weight:800;">📍 Origem</span><span style="color:rgba(255,255,255,.7);font-size:.8rem;">Google Ads — Cascavel/PR</span></div>
+          <div style="display:flex;gap:10px;align-items:center;"><span style="color:#4ade80;font-size:.8rem;font-weight:800;">⏱ Ciclo</span><span style="color:rgba(255,255,255,.7);font-size:.8rem;">Entrou em fev/26, fechou em abr/26</span></div>
+          <div style="display:flex;gap:10px;align-items:center;"><span style="color:#4ade80;font-size:.8rem;font-weight:800;">💼 Perfil</span><span style="color:rgba(255,255,255,.7);font-size:.8rem;">B2B, empresa de linhas têxteis</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="hl-box">
+          <h3>O que esse lead nos ensina</h3>
+          <p>Empresa B2B + produto de nicho + Google Ads = o perfil que converte e com ticket alto. Não é coincidência. É o canal certo chegando no cliente certo.</p>
+        </div>
+        <div class="hl-box" style="margin-top:12px;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06);">
+          <h3 style="color:#60a5fa;">Atenção: há leads iguais esperando retorno</h3>
+          <p>Vários leads de abril têm o mesmo perfil do General Linhas. Eles ainda estão na base — mas ninguém foi atrás ainda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 — 3 GRUPOS -->
+  <div class="slide s-dark" data-slide="4">
+    <div class="badge badge-orange">Qualidade dos leads</div>
+    <h2>Os <em>3 grupos</em> de abril</h2>
+    <div class="group-grid">
+      <div class="group-card g1">
+        <div class="group-num">8</div>
+        <div class="group-title">Ruído — fora do escopo</div>
+        <div class="group-desc">Pedido de areia. Pessoas querendo vender papelão e embalagens pra NF. Revenda. 1 fichário. Esses nunca iam comprar — é problema de segmentação de campanha.</div>
+      </div>
+      <div class="group-card g2">
+        <div class="group-num">~51</div>
+        <div class="group-title">Sem qualificação</div>
+        <div class="group-desc">Só deixaram telefone. Sem nome, empresa, volume ou prazo claro. Chegam pelo Meta, tomam tempo de atendimento e somem. Volume alto, qualidade baixa.</div>
+      </div>
+      <div class="group-card g3">
+        <div class="group-num">~18</div>
+        <div class="group-title">Qualificados — travados no funil</div>
+        <div class="group-desc">Tinham nome, empresa, produto definido e volume razoável. São os fechamentos potenciais de maio. Alguém foi atrás desses?</div>
+      </div>
+    </div>
+    <div class="div"></div>
+    <p class="lead" style="font-size:.85rem;">A campanha de sacola no Meta está gerando volume — mas a maioria cai no grupo 2. O foco não é mais volume. É qualificação.</p>
+  </div>
+
+  <!-- SLIDE 6 — PRODUTOS -->
+  <div class="slide s-mid" data-slide="5">
+    <div class="badge">O que os leads pedem</div>
+    <h2>Sacola lidera, <em>mas com qualidade baixa</em></h2>
+    <div class="prod-row">
+      <div class="prod-tag"><span class="prod-name">Sacola</span><span class="prod-n">30</span></div>
+      <div class="prod-tag"><span class="prod-name">Sem especificar</span><span class="prod-n">25</span></div>
+      <div class="prod-tag"><span class="prod-name">Tag</span><span class="prod-n">7</span></div>
+      <div class="prod-tag"><span class="prod-name">Cartela de cores</span><span class="prod-n">6</span></div>
+      <div class="prod-tag"><span class="prod-name">Folheto / Flyer</span><span class="prod-n">6</span></div>
+      <div class="prod-tag"><span class="prod-name">Bloco</span><span class="prod-n">4</span></div>
+      <div class="prod-tag"><span class="prod-name">Cartão de visita</span><span class="prod-n">4</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="two-col" style="gap:24px;margin-top:0;">
+      <div class="hl-box" style="margin-top:0;">
+        <h3>30 pedidos de sacola em abril</h3>
+        <p>A campanha está gerando volume. Mas vários são de 50 ou 100 unidades — abaixo do viável. O problema não é falta de campanha. É falta de qualificação na entrada.</p>
+      </div>
+      <div class="hl-box" style="margin-top:0;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.06);">
+        <h3 style="color:#fb923c;">Cartela de cores — oportunidade</h3>
+        <p>6 pedidos em abril, incluindo o único fechamento do mês (General Linhas). Têxteis e indústrias pedem isso com volume. Merece atenção especial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — LEADS QUENTES -->
+  <div class="slide s-green" data-slide="6">
+    <div class="badge">Prioridade imediata</div>
+    <h2>Leads que não podem <em>ficar na gaveta</em></h2>
+    <div class="lead-list">
+      <div class="lead-item">
+        <div class="lead-num">1</div>
+        <div><div class="lead-name">Baterias Erbs</div><div class="lead-desc">Apareceu 2 vezes em abril · Encadernação + 2 mil certificados · Demanda real e recorrente</div><span class="lead-tag lt-hot">Follow-up urgente</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">2</div>
+        <div><div class="lead-name">Têxtil Irmãos Jurgensem</div><div class="lead-desc">Relação antiga que ainda não evoluiu · Catálogo de cores · "Já falo com eles faz tempo" — reativar com proposta nova</div><span class="lead-tag lt-warm">Reativar</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">3</div>
+        <div><div class="lead-name">Takeshi Tecidos (SP)</div><div class="lead-desc">Setor têxtil · Cartelas · Perfil B2B idêntico ao General Linhas</div><span class="lead-tag lt-hot">Alto potencial</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">4</div>
+        <div><div class="lead-name">Grupo Kodama Raio X (SP)</div><div class="lead-desc">Manual odontológico · Impressão técnica · Ticket potencialmente alto</div><span class="lead-tag lt-hot">Alto potencial</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">5</div>
+        <div><div class="lead-name">Hospital Azambuja · Anamuro Tecidos</div><div class="lead-desc">Já são clientes · Potencial de retenção e expansão · Não podem esfriar</div><span class="lead-tag lt-recu">Retenção</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 — PROBLEMAS -->
+  <div class="slide s-dark" data-slide="7">
+    <div class="badge badge-orange">O que precisamos resolver</div>
+    <h2>3 problemas <em>que travam a conversão</em></h2>
+    <div class="prob-list">
+      <div class="prob-item">
+        <div class="prob-icon">🔍</div>
+        <div>
+          <div class="prob-title">Leads entram sem filtro mínimo</div>
+          <div class="prob-desc">Antes de montar orçamento, o atendente precisa perguntar: produto? quantidade? prazo? Leads que não respondem ou estão abaixo do volume mínimo saem do funil ali — economiza tempo da equipe inteira e melhora a taxa de conversão real.</div>
+        </div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-icon">📦</div>
+        <div>
+          <div class="prob-title">Campanha de sacola gera quantidade, não qualidade</div>
+          <div class="prob-desc">30 pedidos, mas a maioria é de 50–100 unidades — inviável. A campanha existe e está rodando. O ajuste agora é na segmentação: atrair empresas e revendedores com volume real, não consumidor final pedindo poucas unidades.</div>
+        </div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-icon">📵</div>
+        <div>
+          <div class="prob-title">Leads B2B qualificados ficam sem follow-up</div>
+          <div class="prob-desc">O General Linhas fechou porque alguém foi atrás. Quantos leads com o mesmo perfil chegaram nos últimos meses e não tiveram retorno? Uma rodada de reativação pode trazer fechamentos em maio sem nenhum novo investimento em mídia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9 — PRÓXIMOS PASSOS -->
+  <div class="slide s-mid" data-slide="8">
+    <div class="badge">Plano de ação</div>
+    <h2>O que fazer <em>agora em maio</em></h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-title">Follow-up nos 5 leads B2B de abril</div>
+          <div class="step-desc">Baterias Erbs, Têxtil Jurgensem, Takeshi Tecidos, Grupo Kodama, Clássico Americano. Contato até sexta-feira.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-title">Definir volume mínimo por produto</div>
+          <div class="step-desc">Comunicar no primeiro contato. Sacola, tag, folheto — cada um com quantidade mínima clara antes de abrir orçamento.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-title">Revisão da segmentação — Meta / Sacola</div>
+          <div class="step-desc">Ajustar para atrair empresas com volume real: moda, varejo, distribuidoras. Sair do público que pede 50 unidades.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-title">Reativação de leads dos últimos 90 dias</div>
+          <div class="step-desc">Mapear quem ficou parado no funil desde fev/26. Um follow-up direto pode gerar fechamentos sem novo investimento.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <div class="step-title">Manter o Google Ads</div>
+          <div class="step-desc">General Linhas prova que o canal funciona para B2B com ticket alto. Não mudar. Sustentar e monitorar.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">6</div>
+        <div>
+          <div class="step-title">Cuidar dos clientes ativos</div>
+          <div class="step-desc">Hospital Azambuja, Anamuro Tecidos e Fast Malhas são clientes com histórico. Manter contato e oferecer proativamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10 — FECHAMENTO -->
+  <div class="slide s-cover" data-slide="9">
+    <div class="badge">Resumo</div>
+    <h1>O próximo <em>General Linhas</em><br>já está na base.</h1>
+    <p class="lead" style="margin-top:24px;">113 leads chegaram em abril. Pelo menos 18 têm o perfil certo para fechar. A diferença entre um mês ruim e um mês bom em maio não está em mais campanha — está em ir atrás do que já chegou.</p>
+    <div class="div"></div>
+    <p style="color:rgba(255,255,255,.35);font-size:.8rem;font-weight:700;">Cardo Marketing &nbsp;·&nbsp; Gráfica NF / Grupo NF &nbsp;·&nbsp; Maio de 2026</p>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-arr" id="prev">←</button>
+  <div id="dots"></div>
+  <button class="nav-arr" id="next">→</button>
+  <span class="slide-num" id="slideNum">1 / 10</span>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const numEl  = document.getElementById('slideNum');
+let cur = 0;
+
+// build dots
+slides.forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='nav-dot'+(i===0?' active':'');
+  d.onclick=()=>go(i);
+  dotsEl.appendChild(d);
+});
+
+function go(n){
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('out');
+  setTimeout(()=>slides[cur].classList.remove('out'), 400);
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  numEl.textContent = `${cur+1} / ${slides.length}`;
+}
+
+document.getElementById('next').onclick = ()=>go(cur+1);
+document.getElementById('prev').onclick = ()=>go(cur-1);
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(cur-1);
+});
+</script>
+</body>
+</html>
