@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Reel Insights — @priscilafaiadtextil</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f0f3ff;--card:#fff;--card2:#e8edf8;--brd:#d5dcf0;
+  --nav:#0c1d73;--nav2:#1d1f96;--mu:#6272a0;--mu2:#9ba8c8;
+  --green:#16a34a;--meta:#c13584;--meta2:#833ab4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--nav);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(38,33,191,.04) 38px,rgba(38,33,191,.04) 40px);pointer-events:none;z-index:0;}
+
+.gl{height:4px;background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045,#833ab4);background-size:300% 100%;animation:gm 4s linear infinite;}
+@keyframes gm{0%{background-position:0%}100%{background-position:300%}}
+
+header{background:linear-gradient(135deg,var(--nav),var(--nav2));position:relative;z-index:1;}
+.hi{max-width:1200px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.hl{display:flex;align-items:center;gap:14px;}
+.logo-box{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#833ab4,#c13584);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:900;color:#fff;flex-shrink:0;}
+.ht h1{font-size:1.1rem;font-weight:900;color:#fff;}
+.ht p{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;}
+.header-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.7rem;font-weight:800;color:rgba(255,255,255,.8);}
+
+main{max-width:1200px;margin:0 auto;padding:28px 32px 60px;position:relative;z-index:1;}
+
+/* VIDEO CARD */
+.video-card{background:var(--card);border:1px solid var(--brd);border-radius:18px;padding:24px 28px;display:flex;gap:28px;align-items:center;box-shadow:0 2px 16px rgba(12,29,115,.09);margin-bottom:24px;}
+.video-thumb{width:80px;height:80px;border-radius:12px;background:linear-gradient(135deg,#833ab4,#c13584,#fcb045);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;}
+.video-info h2{font-size:1rem;font-weight:900;color:var(--nav);line-height:1.3;margin-bottom:4px;}
+.video-info .handle{font-size:.75rem;font-weight:800;color:var(--meta);margin-bottom:8px;}
+.video-meta{display:flex;gap:12px;flex-wrap:wrap;}
+.vmeta-tag{font-size:.67rem;font-weight:700;background:var(--card2);border:1px solid var(--brd);border-radius:5px;padding:2px 8px;color:var(--mu);}
+
+/* SECTION LABEL */
+.slbl{font-size:.63rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--nav);display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:28px;}
+.slbl:first-child{margin-top:0;}
+.slbl::after{content:'';flex:1;height:1px;background:var(--brd);}
+
+/* KPI GRID */
+.kgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+@media(max-width:1000px){.kgrid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:580px){.kgrid{grid-template-columns:repeat(2,1fr);}}
+
+.kcard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:16px 14px;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(12,29,115,.07);}
+.kcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0;}
+.kcard.c-views::before{background:#833ab4;}
+.kcard.c-hook::before{background:#16a34a;}
+.kcard.c-ret::before{background:#f59e0b;}
+.kcard.c-skip::before{background:#ea4335;}
+.kcard.c-eng::before{background:#1877f2;}
+.kcard.c-save::before{background:#06b6d4;}
+.kcard.c-reach::before{background:#8b5cf6;}
+.kcard.c-share::before{background:#fb923c;}
+.klbl{font-size:.58rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--mu);margin-bottom:7px;}
+.kval{font-size:1.4rem;font-weight:900;letter-spacing:-.5px;line-height:1;color:var(--nav);}
+.kval.good{color:#16a34a;}
+.kval.warn{color:#f59e0b;}
+.kval.bad{color:#ea4335;}
+.kval.purple{color:#833ab4;}
+.ksub{font-size:.62rem;color:var(--mu2);margin-top:5px;line-height:1.3;}
+
+/* RATING BADGE */
+.rating{display:inline-flex;align-items:center;gap:4px;border-radius:5px;padding:2px 7px;font-size:.6rem;font-weight:800;margin-top:5px;}
+.rating.good{background:rgba(22,163,74,.1);color:#16a34a;}
+.rating.avg{background:rgba(245,158,11,.1);color:#f59e0b;}
+.rating.bad{background:rgba(234,67,53,.1);color:#ea4335;}
+
+/* CHARTS ROW */
+.charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:900px){.charts-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.charts-row{grid-template-columns:1fr;}}
+
+.chart-card{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:20px 18px;box-shadow:0 2px 10px rgba(12,29,115,.07);}
+.chart-card h3{font-size:.72rem;font-weight:900;color:var(--nav);margin-bottom:4px;}
+.chart-card .chart-sub{font-size:.63rem;color:var(--mu2);margin-bottom:16px;}
+
+/* RETENTION VISUAL */
+.retention-bar{width:100%;height:8px;border-radius:4px;background:var(--card2);overflow:hidden;margin:6px 0;}
+.retention-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#833ab4,#c13584);}
+
+.ret-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ret-time{font-size:.65rem;font-weight:700;color:var(--mu);width:30px;}
+.ret-pct{font-size:.65rem;font-weight:800;color:var(--nav);width:36px;text-align:right;}
+
+/* TRAFFIC SOURCES */
+.source-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.source-label{font-size:.7rem;font-weight:700;color:var(--nav);width:80px;flex-shrink:0;}
+.source-bar-wrap{flex:1;height:7px;background:var(--card2);border-radius:4px;overflow:hidden;}
+.source-bar-fill{height:100%;border-radius:4px;}
+.source-pct{font-size:.7rem;font-weight:800;color:var(--nav);width:38px;text-align:right;}
+
+/* ENGAGEMENT BREAKDOWN */
+.eng-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--brd);}
+.eng-item:last-child{border-bottom:none;}
+.eng-label{display:flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;color:var(--nav);}
+.eng-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.eng-val{font-size:.8rem;font-weight:900;color:var(--nav);}
+.eng-rate{font-size:.65rem;color:var(--mu2);margin-left:4px;}
+
+/* INSIGHTS */
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:700px){.insights-grid{grid-template-columns:1fr;}}
+.insight-card{border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;}
+.insight-card.pos{background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.2);}
+.insight-card.neg{background:rgba(234,67,53,.05);border:1px solid rgba(234,67,53,.2);}
+.insight-card.neu{background:rgba(131,58,180,.05);border:1px solid rgba(131,58,180,.2);}
+.insight-ico{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.insight-title{font-size:.78rem;font-weight:800;margin-bottom:3px;}
+.insight-card.pos .insight-title{color:#16a34a;}
+.insight-card.neg .insight-title{color:#ea4335;}
+.insight-card.neu .insight-title{color:#833ab4;}
+.insight-desc{font-size:.71rem;color:var(--mu);line-height:1.55;}
+
+/* BENCHMARK TABLE */
+.bench-table{width:100%;border-collapse:collapse;background:var(--card);}
+.bench-table th{background:var(--card2);font-size:.58rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--mu);padding:9px 14px;text-align:left;border-bottom:2px solid var(--brd);}
+.bench-table td{padding:10px 14px;font-size:.76rem;border-bottom:1px solid var(--brd);color:var(--nav);}
+.bench-table tr:last-child td{border-bottom:none;}
+.bench-table td:first-child{font-weight:800;}
+.chip{display:inline-block;border-radius:5px;padding:2px 8px;font-size:.62rem;font-weight:800;}
+.chip.good{background:rgba(22,163,74,.1);color:#16a34a;}
+.chip.avg{background:rgba(245,158,11,.1);color:#f59e0b;}
+.chip.bad{background:rgba(234,67,53,.1);color:#ea4335;}
+
+footer{text-align:center;padding:24px;font-size:.67rem;color:var(--mu2);position:relative;z-index:1;}
+</style>
+</head>
+<body>
+<div class="gl"></div>
+
+<header>
+  <div class="hi">
+    <div class="hl">
+      <div class="logo-box">NF</div>
+      <div class="ht">
+        <h1>Reel Insights — @priscilafaiadtextil</h1>
+        <p>Gráfica NF / Grupo NF &nbsp;·&nbsp; Análise de performance do conteúdo</p>
+      </div>
+    </div>
+    <div class="header-badge">📱 Instagram Reels · Abril 2026</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- VIDEO INFO -->
+  <div class="video-card">
+    <div class="video-thumb">🎬</div>
+    <div class="video-info">
+      <h2>"Nem sempre ter um produto diferenciado é suficiente…"</h2>
+      <div class="handle">@priscilafaiadtextil &nbsp;·&nbsp; Gráfica NF</div>
+      <div class="video-meta">
+        <span class="vmeta-tag">📅 28 de abril de 2026</span>
+        <span class="vmeta-tag">⏱ Duração: 1min 10s</span>
+        <span class="vmeta-tag">🎥 Reel orgânico</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs PRINCIPAIS -->
+  <div class="slbl">Métricas principais</div>
+  <div class="kgrid" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px;">
+    <div class="kcard c-views">
+      <div class="klbl">Visualizações</div>
+      <div class="kval purple">4.435</div>
+      <div class="ksub">3.279 contas alcançadas</div>
+    </div>
+    <div class="kcard c-eng">
+      <div class="klbl">Interações totais</div>
+      <div class="kval">160</div>
+      <div class="ksub">curtidas + saves + shares + comentários</div>
+    </div>
+    <div class="kcard c-save">
+      <div class="klbl">Salvamentos</div>
+      <div class="kval good">24</div>
+      <div class="ksub">conteúdo com alto valor percebido</div>
+    </div>
+    <div class="kcard c-share">
+      <div class="klbl">Compartilhamentos</div>
+      <div class="kval">15</div>
+      <div class="ksub">+ 3 reposts</div>
+    </div>
+  </div>
+
+  <!-- KPIs CALCULADOS -->
+  <div class="slbl">Métricas calculadas</div>
+  <div class="kgrid">
+    <div class="kcard c-hook">
+      <div class="klbl">Hook Rate</div>
+      <div class="kval good">50,5%</div>
+      <div class="ksub">assistiram além do skip</div>
+      <div class="rating avg">⚠ mediano</div>
+    </div>
+    <div class="kcard c-ret">
+      <div class="klbl">Taxa de Retenção</div>
+      <div class="kval warn">18,6%</div>
+      <div class="ksub">13s de 70s em média</div>
+      <div class="rating avg">⚠ normal p/ reels</div>
+    </div>
+    <div class="kcard c-skip">
+      <div class="klbl">Taxa de Skip</div>
+      <div class="kval bad">49,5%</div>
+      <div class="ksub">pularam antes do fim</div>
+      <div class="rating bad">✗ alta</div>
+    </div>
+    <div class="kcard c-eng">
+      <div class="klbl">Engajamento</div>
+      <div class="kval good">3,6%</div>
+      <div class="ksub">interações / views</div>
+      <div class="rating good">✓ acima da média</div>
+    </div>
+    <div class="kcard c-save">
+      <div class="klbl">Save Rate</div>
+      <div class="kval good">0,54%</div>
+      <div class="ksub">salvamentos / views</div>
+      <div class="rating good">✓ ótimo</div>
+    </div>
+    <div class="kcard c-reach">
+      <div class="klbl">Não seguidores</div>
+      <div class="kval good">85,6%</div>
+      <div class="ksub">alcance orgânico novo</div>
+      <div class="rating good">✓ excelente</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="slbl">Análise detalhada</div>
+  <div class="charts-row">
+
+    <!-- RETENÇÃO -->
+    <div class="chart-card">
+      <h3>Curva de Retenção estimada</h3>
+      <div class="chart-sub">% de espectadores por segundo do vídeo</div>
+      <div style="margin-top:4px;">
+        <div class="ret-row">
+          <span class="ret-time">0s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:100%"></div></div></div>
+          <span class="ret-pct">100%</span>
+        </div>
+        <div class="ret-row">
+          <span class="ret-time">5s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:52%"></div></div></div>
+          <span class="ret-pct">~52%</span>
+        </div>
+        <div class="ret-row">
+          <span class="ret-time">10s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:36%"></div></div></div>
+          <span class="ret-pct">~36%</span>
+        </div>
+        <div class="ret-row">
+          <span class="ret-time">20s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:24%"></div></div></div>
+          <span class="ret-pct">~24%</span>
+        </div>
+        <div class="ret-row">
+          <span class="ret-time">35s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:14%"></div></div></div>
+          <span class="ret-pct">~14%</span>
+        </div>
+        <div class="ret-row">
+          <span class="ret-time">70s</span>
+          <div style="flex:1;margin:0 8px;"><div class="retention-bar"><div class="retention-fill" style="width:5%"></div></div></div>
+          <span class="ret-pct">~5%</span>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:10px;background:rgba(245,158,11,.08);border-radius:8px;border:1px solid rgba(245,158,11,.2);">
+        <div style="font-size:.66rem;font-weight:800;color:#f59e0b;">Tempo médio real: 13 segundos</div>
+        <div style="font-size:.62rem;color:var(--mu2);margin-top:2px;">A maioria para de assistir antes dos 20 segundos. O gancho inicial precisa ser mais forte.</div>
+      </div>
+    </div>
+
+    <!-- FONTES DE TRÁFEGO -->
+    <div class="chart-card">
+      <h3>Fontes de visualização</h3>
+      <div class="chart-sub">De onde vieram as 4.435 visualizações</div>
+      <div style="margin-top:8px;">
+        <div class="source-row">
+          <span class="source-label">Feed</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:84.7%;background:linear-gradient(90deg,#833ab4,#c13584);"></div></div>
+          <span class="source-pct">84,7%</span>
+        </div>
+        <div class="source-row">
+          <span class="source-label">Aba Reels</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:7.2%;background:#fd1d1d;"></div></div>
+          <span class="source-pct">7,2%</span>
+        </div>
+        <div class="source-row">
+          <span class="source-label">Perfil</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:4.1%;background:#fcb045;"></div></div>
+          <span class="source-pct">4,1%</span>
+        </div>
+        <div class="source-row">
+          <span class="source-label">Stories</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:2.1%;background:#f59e0b;"></div></div>
+          <span class="source-pct">2,1%</span>
+        </div>
+        <div class="source-row">
+          <span class="source-label">Explorar</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:1.4%;background:#94a3b8;"></div></div>
+          <span class="source-pct">1,4%</span>
+        </div>
+        <div class="source-row">
+          <span class="source-label">Pesquisa</span>
+          <div class="source-bar-wrap"><div class="source-bar-fill" style="width:0.5%;background:#cbd5e1;"></div></div>
+          <span class="source-pct">0,1%</span>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:10px;background:rgba(131,58,180,.06);border-radius:8px;border:1px solid rgba(131,58,180,.2);">
+        <div style="font-size:.66rem;font-weight:800;color:#833ab4;">Feed é o principal canal (84,7%)</div>
+        <div style="font-size:.62rem;color:var(--mu2);margin-top:2px;">O algoritmo distribuiu bem pelo feed. Pouca tração via Explorar — indica que tem potencial ainda não explorado.</div>
+      </div>
+    </div>
+
+    <!-- ENGAJAMENTO -->
+    <div class="chart-card">
+      <h3>Breakdown de engajamento</h3>
+      <div class="chart-sub">160 interações totais distribuídas</div>
+      <div style="margin-top:12px;">
+        <div class="eng-item">
+          <div class="eng-label"><div class="eng-dot" style="background:#f87171"></div>Curtidas</div>
+          <div><span class="eng-val">116</span><span class="eng-rate">72,5%</span></div>
+        </div>
+        <div class="eng-item">
+          <div class="eng-label"><div class="eng-dot" style="background:#06b6d4"></div>Salvamentos</div>
+          <div><span class="eng-val">24</span><span class="eng-rate">15%</span></div>
+        </div>
+        <div class="eng-item">
+          <div class="eng-label"><div class="eng-dot" style="background:#f59e0b"></div>Compartilhamentos</div>
+          <div><span class="eng-val">15</span><span class="eng-rate">9,4%</span></div>
+        </div>
+        <div class="eng-item">
+          <div class="eng-label"><div class="eng-dot" style="background:#8b5cf6"></div>Reposts</div>
+          <div><span class="eng-val">3</span><span class="eng-rate">1,9%</span></div>
+        </div>
+        <div class="eng-item">
+          <div class="eng-label"><div class="eng-dot" style="background:#94a3b8"></div>Comentários</div>
+          <div><span class="eng-val">2</span><span class="eng-rate">1,3%</span></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:10px;background:rgba(6,182,212,.07);border-radius:8px;border:1px solid rgba(6,182,212,.2);">
+        <div style="font-size:.66rem;font-weight:800;color:#0891b2;">Saves representam 15% do engajamento</div>
+        <div style="font-size:.62rem;color:var(--mu2);margin-top:2px;">Alto save rate = conteúdo com valor. As pessoas guardam pra usar depois. Excelente sinal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENCHMARKS -->
+  <div class="slbl">Benchmarks — Instagram Reels (média do setor)</div>
+  <div style="border-radius:14px;border:1px solid var(--brd);overflow:hidden;box-shadow:0 2px 10px rgba(12,29,115,.07);">
+    <table class="bench-table">
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Este reel</th>
+          <th>Média do mercado</th>
+          <th>Avaliação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hook Rate (retenção inicial)</td>
+          <td><strong>50,5%</strong></td>
+          <td>40–60%</td>
+          <td><span class="chip avg">Mediano</span></td>
+        </tr>
+        <tr>
+          <td>Taxa de Retenção geral</td>
+          <td><strong>18,6%</strong></td>
+          <td>15–25%</td>
+          <td><span class="chip avg">Normal</span></td>
+        </tr>
+        <tr>
+          <td>Taxa de Skip</td>
+          <td><strong>49,5%</strong></td>
+          <td>40–55%</td>
+          <td><span class="chip avg">Aceitável</span></td>
+        </tr>
+        <tr>
+          <td>Taxa de Engajamento</td>
+          <td><strong>3,6%</strong></td>
+          <td>1–3%</td>
+          <td><span class="chip good">Acima da média</span></td>
+        </tr>
+        <tr>
+          <td>Save Rate</td>
+          <td><strong>0,54%</strong></td>
+          <td>0,2–0,4%</td>
+          <td><span class="chip good">Ótimo</span></td>
+        </tr>
+        <tr>
+          <td>% não seguidores</td>
+          <td><strong>85,6%</strong></td>
+          <td>60–75%</td>
+          <td><span class="chip good">Excelente</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="slbl">O que isso significa na prática</div>
+  <div class="insights-grid">
+    <div class="insight-card pos">
+      <div class="insight-ico">🌱</div>
+      <div>
+        <div class="insight-title">Alcance orgânico excelente</div>
+        <div class="insight-desc">85,6% das visualizações vieram de pessoas que ainda não seguem o perfil. O conteúdo está sendo distribuído pelo algoritmo para novas audiências — exatamente o que se espera de uma estratégia de topo de funil.</div>
+      </div>
+    </div>
+    <div class="insight-card pos">
+      <div class="insight-ico">🔖</div>
+      <div>
+        <div class="insight-title">Save Rate acima da média — conteúdo que gera valor</div>
+        <div class="insight-desc">24 salvamentos em 4.435 views (0,54%) é acima do benchmark de 0,2–0,4%. Indica que o conteúdo é relevante e útil — as pessoas guardam pra rever. Isso favorece o algoritmo.</div>
+      </div>
+    </div>
+    <div class="insight-card neg">
+      <div class="insight-ico">⚡</div>
+      <div>
+        <div class="insight-title">O gancho precisa ser mais forte</div>
+        <div class="insight-desc">Com tempo médio de apenas 13 segundos em um vídeo de 70s, a maioria das pessoas para muito cedo. O primeiro bloco de 3–5 segundos precisa ser mais direto, visual e urgente para segurar quem está deslizando.</div>
+      </div>
+    </div>
+    <div class="insight-card neg">
+      <div class="insight-ico">💬</div>
+      <div>
+        <div class="insight-title">Comentários muito baixos</div>
+        <div class="insight-desc">Apenas 2 comentários em 160 interações (1,3%). O conteúdo gera engajamento passivo (curtidas, saves), mas não está gerando conversa. Uma CTA mais direta — "comente abaixo", "qual é o seu produto" — pode mudar isso.</div>
+      </div>
+    </div>
+    <div class="insight-card neu">
+      <div class="insight-ico">🗺️</div>
+      <div>
+        <div class="insight-title">Feed domina, Explorar quase nada</div>
+        <div class="insight-desc">84,7% do tráfego vem do Feed — o algoritmo distribui bem para seguidores e amigos próximos. Mas apenas 1,4% veio do Explorar, onde estaria o alcance mais amplo. Para crescer o perfil, o objetivo deveria ser aumentar essa fatia.</div>
+      </div>
+    </div>
+    <div class="insight-card neu">
+      <div class="insight-ico">📈</div>
+      <div>
+        <div class="insight-title">Engajamento sólido — base boa para crescimento</div>
+        <div class="insight-desc">3,6% de engajamento é acima da média do Instagram (1–3%). Com melhorias no gancho inicial para segurar mais pessoas até o fim, este número pode subir consideravelmente — e com ele, o alcance orgânico futuro.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Análise gerada por <strong>Cardo Marketing</strong> &nbsp;·&nbsp; Reel @priscilafaiadtextil &nbsp;·&nbsp; Dados extraídos do Instagram Insights · Abril/2026
+</footer>
+</body>
+</html>
