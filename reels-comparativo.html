@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Comparativo de Reels — @priscilafaiadtextil</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f0f3ff;--card:#fff;--card2:#e8edf8;--brd:#d5dcf0;
+  --nav:#0c1d73;--nav2:#1d1f96;--mu:#6272a0;--mu2:#9ba8c8;
+  --meta:#c13584;--meta2:#833ab4;
+  --green:#16a34a;--red:#dc2626;--yellow:#d97706;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--nav);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(38,33,191,.04) 38px,rgba(38,33,191,.04) 40px);pointer-events:none;z-index:0;}
+
+.gl{height:4px;background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045,#833ab4);background-size:300% 100%;animation:gm 4s linear infinite;}
+@keyframes gm{0%{background-position:0%}100%{background-position:300%}}
+
+header{background:linear-gradient(135deg,var(--nav),var(--nav2));position:relative;z-index:1;}
+.hi{max-width:1340px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.hl{display:flex;align-items:center;gap:14px;}
+.logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#833ab4,#c13584);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:900;color:#fff;}
+.ht h1{font-size:1.1rem;font-weight:900;color:#fff;}
+.ht p{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;}
+.hbadge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.7rem;font-weight:800;color:rgba(255,255,255,.8);}
+
+main{max-width:1340px;margin:0 auto;padding:28px 32px 60px;position:relative;z-index:1;}
+
+.slbl{font-size:.63rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--nav);display:flex;align-items:center;gap:12px;margin-bottom:16px;margin-top:32px;}
+.slbl:first-child{margin-top:0;}
+.slbl::after{content:'';flex:1;height:1px;background:var(--brd);}
+
+/* WINNER CARD */
+.winner{background:linear-gradient(135deg,#0d1b2e,#1a0d2e);border-radius:20px;padding:28px 32px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;margin-bottom:8px;position:relative;overflow:hidden;}
+.winner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(196,53,132,.15),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(131,58,180,.12),transparent 60%);}
+.w-rank{position:relative;z-index:1;}
+.w-crown{font-size:2.5rem;line-height:1;text-align:center;}
+.w-label{font-size:.6rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;margin-top:4px;}
+.w-info{position:relative;z-index:1;}
+.w-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(196,53,132,.2);border:1px solid rgba(196,53,132,.4);border-radius:20px;padding:4px 12px;font-size:.65rem;font-weight:800;color:#f9a8d4;margin-bottom:10px;}
+.w-title{font-size:1.2rem;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px;}
+.w-date{font-size:.72rem;color:rgba(255,255,255,.45);}
+.w-stats{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;}
+.w-stat{text-align:center;}
+.w-sv{font-size:1.5rem;font-weight:900;color:#fff;line-height:1;}
+.w-sl{font-size:.6rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.w-badges{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;}
+.w-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 14px;text-align:center;}
+.w-badge-v{font-size:1.1rem;font-weight:900;color:#4ade80;}
+.w-badge-l{font-size:.58rem;color:rgba(255,255,255,.4);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+
+/* SUMMARY CARDS */
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px;}
+@media(max-width:900px){.summary-grid{grid-template-columns:repeat(2,1fr);}}
+.scard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:16px 14px;box-shadow:0 2px 10px rgba(12,29,115,.07);}
+.scard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.scard-lbl{font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--mu);}
+.scard-icon{font-size:1.1rem;}
+.scard-v{font-size:1.6rem;font-weight:900;color:var(--nav);letter-spacing:-.5px;line-height:1;}
+.scard-s{font-size:.68rem;color:var(--mu2);margin-top:4px;}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--brd);box-shadow:0 2px 16px rgba(12,29,115,.09);}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:.76rem;min-width:1100px;}
+thead th{background:var(--nav);color:rgba(255,255,255,.75);font-size:.57rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:11px 12px;text-align:right;white-space:nowrap;}
+thead th:nth-child(1){width:36px;text-align:center;}
+thead th:nth-child(2){text-align:left;min-width:200px;}
+thead th:nth-child(3){text-align:center;width:50px;}
+tbody tr{border-bottom:1px solid var(--brd);transition:background .1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover td{background:#f5f7ff;}
+tbody tr.best td{background:rgba(22,163,74,.03);}
+tbody td{padding:10px 12px;vertical-align:middle;text-align:right;white-space:nowrap;}
+tbody td:nth-child(1){text-align:center;}
+tbody td:nth-child(2){text-align:left;}
+tbody td:nth-child(3){text-align:center;}
+
+.rank-badge{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;}
+.rank-1{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;}
+.rank-2{background:linear-gradient(135deg,#9ca3af,#6b7280);color:#fff;}
+.rank-3{background:linear-gradient(135deg,#b45309,#92400e);color:#fff;}
+.rank-n{background:var(--card2);color:var(--mu);}
+
+.post-title{font-size:.78rem;font-weight:800;color:var(--nav);line-height:1.2;max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.post-date{font-size:.64rem;color:var(--mu2);margin-top:2px;}
+.post-dur{display:inline-block;background:var(--card2);border-radius:4px;padding:1px 6px;font-size:.6rem;font-weight:700;color:var(--mu);margin-top:2px;}
+
+.cell-val{font-weight:800;color:var(--nav);}
+.cell-top{font-weight:900;color:#16a34a;}
+.cell-bot{font-weight:700;color:#dc2626;}
+.cell-mid{font-weight:700;color:var(--mu);}
+
+/* mini bar */
+.mini-bar{display:flex;align-items:center;gap:6px;justify-content:flex-end;}
+.mb-track{width:60px;height:5px;background:var(--card2);border-radius:3px;overflow:hidden;flex-shrink:0;}
+.mb-fill{height:100%;border-radius:3px;}
+.mb-val{font-size:.72rem;font-weight:800;min-width:38px;text-align:right;}
+
+/* chip */
+.chip{display:inline-block;border-radius:5px;padding:2px 7px;font-size:.6rem;font-weight:800;}
+.chip-g{background:rgba(22,163,74,.1);color:#16a34a;}
+.chip-y{background:rgba(217,119,6,.1);color:#d97706;}
+.chip-r{background:rgba(220,38,38,.1);color:#dc2626;}
+
+/* CHARTS SECTION */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:800px){.charts-grid{grid-template-columns:1fr;}}
+.chart-card{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(12,29,115,.07);}
+.chart-card h3{font-size:.78rem;font-weight:900;color:var(--nav);margin-bottom:2px;}
+.chart-card p{font-size:.63rem;color:var(--mu2);margin-bottom:14px;}
+
+/* INSIGHTS */
+.insights-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:900px){.insights-row{grid-template-columns:1fr;}}
+.ins-card{border-radius:13px;padding:16px 18px;}
+.ins-card.pos{background:rgba(22,163,74,.05);border:1px solid rgba(22,163,74,.18);}
+.ins-card.neg{background:rgba(220,38,38,.05);border:1px solid rgba(220,38,38,.18);}
+.ins-card.neu{background:rgba(131,58,180,.05);border:1px solid rgba(131,58,180,.18);}
+.ins-ico{font-size:1.3rem;margin-bottom:8px;}
+.ins-title{font-size:.78rem;font-weight:900;margin-bottom:5px;}
+.ins-card.pos .ins-title{color:#16a34a;}
+.ins-card.neg .ins-title{color:#dc2626;}
+.ins-card.neu .ins-title{color:#833ab4;}
+.ins-desc{font-size:.71rem;color:var(--mu);line-height:1.55;}
+
+footer{text-align:center;padding:24px;font-size:.67rem;color:var(--mu2);position:relative;z-index:1;}
+</style>
+</head>
+<body>
+<div class="gl"></div>
+<header>
+  <div class="hi">
+    <div class="hl">
+      <div class="logo">NF</div>
+      <div class="ht">
+        <h1>Comparativo de Reels — @priscilafaiadtextil</h1>
+        <p>Gráfica NF / Grupo NF &nbsp;·&nbsp; 7 posts analisados &nbsp;·&nbsp; Jan 2026 – Abr 2026</p>
+      </div>
+    </div>
+    <div class="hbadge">📊 Performance de Influencer</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- WINNER -->
+  <div class="slbl">Post de melhor performance</div>
+  <div class="winner">
+    <div class="w-rank">
+      <div class="w-crown">🏆</div>
+      <div class="w-label">#1 Geral</div>
+    </div>
+    <div class="w-info">
+      <div class="w-tag">✦ Melhor reel do período</div>
+      <div class="w-title">"Nem todo problema na peça está relacionado à qualidade..."</div>
+      <div class="w-date">17 de dezembro de 2025 &nbsp;·&nbsp; 0:53 &nbsp;·&nbsp; @priscilafaiadtextil</div>
+      <div class="w-stats">
+        <div class="w-stat"><div class="w-sv">20.860</div><div class="w-sl">Views</div></div>
+        <div class="w-stat"><div class="w-sv">1.640</div><div class="w-sl">Interações</div></div>
+        <div class="w-stat"><div class="w-sv">7,86%</div><div class="w-sl">Eng. Rate</div></div>
+        <div class="w-stat"><div class="w-sv">251</div><div class="w-sl">Salvamentos</div></div>
+        <div class="w-stat"><div class="w-sv">188</div><div class="w-sl">Compartilhamentos</div></div>
+        <div class="w-stat"><div class="w-sv">97,4%</div><div class="w-sl">Não seguidores</div></div>
+      </div>
+    </div>
+    <div class="w-badges">
+      <div class="w-badge"><div class="w-badge-v">60,2%</div><div class="w-badge-l">Hook Rate</div></div>
+      <div class="w-badge"><div class="w-badge-v">24,5%</div><div class="w-badge-l">Retenção</div></div>
+      <div class="w-badge"><div class="w-badge-v">1,20%</div><div class="w-badge-l">Save Rate</div></div>
+    </div>
+  </div>
+
+  <!-- TOTAIS -->
+  <div class="slbl">Totais do período</div>
+  <div class="summary-grid">
+    <div class="scard">
+      <div class="scard-top"><span class="scard-lbl">Total de views</span><span class="scard-icon">👁️</span></div>
+      <div class="scard-v">56.996</div>
+      <div class="scard-s">em 7 reels publicados</div>
+    </div>
+    <div class="scard">
+      <div class="scard-top"><span class="scard-lbl">Total de interações</span><span class="scard-icon">💬</span></div>
+      <div class="scard-v">3.045</div>
+      <div class="scard-s">curtidas + saves + shares + comentários</div>
+    </div>
+    <div class="scard">
+      <div class="scard-top"><span class="scard-lbl">Total de salvamentos</span><span class="scard-icon">🔖</span></div>
+      <div class="scard-v">524</div>
+      <div class="scard-s">conteúdo salvo pelos espectadores</div>
+    </div>
+    <div class="scard">
+      <div class="scard-top"><span class="scard-lbl">Eng. Rate médio</span><span class="scard-icon">📈</span></div>
+      <div class="scard-v">4,74%</div>
+      <div class="scard-s">benchmark: 1–3% · acima da média</div>
+    </div>
+  </div>
+
+  <!-- TABELA COMPARATIVA -->
+  <div class="slbl">Comparativo completo</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th style="text-align:left">Post</th>
+          <th style="text-align:center">Dur.</th>
+          <th>Views</th>
+          <th>Alcance</th>
+          <th>Interações</th>
+          <th>Eng. Rate</th>
+          <th>Hook Rate</th>
+          <th>Retenção</th>
+          <th>Save Rate</th>
+          <th>Saves</th>
+          <th>Shares</th>
+          <th>Coment.</th>
+          <th>% Não Seg.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- #1 - Nem todo problema (20.860) -->
+        <tr class="best">
+          <td><span class="rank-badge rank-1">1</span></td>
+          <td>
+            <div class="post-title">"Nem todo problema na peça está relacionado..."</div>
+            <div class="post-date">17 dez 2025</div>
+            <div class="post-dur">0:53</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-g">Curto</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:100%;background:#16a34a"></div></div><span class="mb-val cell-top">20.860</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:100%;background:#16a34a"></div></div><span class="mb-val cell-top">15.296</span></div></td>
+          <td><span class="cell-top">1.640</span></td>
+          <td><span class="cell-top">7,86%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:100%;background:#16a34a"></div></div><span class="mb-val cell-top">60,2%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:93%;background:#16a34a"></div></div><span class="mb-val cell-top">24,5%</span></div></td>
+          <td><span class="cell-top">1,20%</span></td>
+          <td><span class="cell-top">251</span></td>
+          <td><span class="cell-top">188</span></td>
+          <td><span class="cell-top">33</span></td>
+          <td><span class="cell-top">97,4%</span></td>
+        </tr>
+        <!-- #2 - O produto é o mesmo (11.464) -->
+        <tr>
+          <td><span class="rank-badge rank-2">2</span></td>
+          <td>
+            <div class="post-title">"O produto é o mesmo."</div>
+            <div class="post-date">27 fev 2026</div>
+            <div class="post-dur">1:11</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-y">Médio</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:55%;background:#4285f4"></div></div><span class="mb-val cell-val">11.464</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:54%;background:#4285f4"></div></div><span class="mb-val cell-val">8.231</span></div></td>
+          <td><span class="cell-val">348</span></td>
+          <td><span class="cell-val">3,04%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:86%;background:#4285f4"></div></div><span class="mb-val cell-val">51,8%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:98%;background:#4285f4"></div></div><span class="mb-val cell-val">23,9%</span></div></td>
+          <td><span class="cell-val">0,34%</span></td>
+          <td><span class="cell-val">39</span></td>
+          <td><span class="cell-val">38</span></td>
+          <td><span class="cell-val">9</span></td>
+          <td><span class="cell-val">92,0%</span></td>
+        </tr>
+        <!-- #3 - O simples ato de abrir (7.156) -->
+        <tr>
+          <td><span class="rank-badge rank-3">3</span></td>
+          <td>
+            <div class="post-title">"O simples ato de abrir uma embalagem..."</div>
+            <div class="post-date">27 out 2025</div>
+            <div class="post-dur">1:23</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-r">Longo</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:34%;background:#f59e0b"></div></div><span class="mb-val cell-val">7.156</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:32%;background:#f59e0b"></div></div><span class="mb-val cell-val">4.902</span></div></td>
+          <td><span class="cell-val">268</span></td>
+          <td><span class="cell-val">3,75%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:96%;background:#f59e0b"></div></div><span class="mb-val cell-val">57,5%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:74%;background:#f59e0b"></div></div><span class="mb-val cell-val">19,3%</span></div></td>
+          <td><span class="cell-val">0,38%</span></td>
+          <td><span class="cell-val">27</span></td>
+          <td><span class="cell-val">19</span></td>
+          <td><span class="cell-val">31</span></td>
+          <td><span class="cell-mid">—</span></td>
+        </tr>
+        <!-- #4 - Os melhores fornecedores (5.694) -->
+        <tr>
+          <td><span class="rank-badge rank-n">4</span></td>
+          <td>
+            <div class="post-title">"Os melhores fornecedores de tecidos..."</div>
+            <div class="post-date">23 jan 2026</div>
+            <div class="post-dur">0:57</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-g">Curto</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:27%;background:#8b5cf6"></div></div><span class="mb-val cell-val">5.694</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:30%;background:#8b5cf6"></div></div><span class="mb-val cell-val">4.569</span></div></td>
+          <td><span class="cell-val">396</span></td>
+          <td><span class="cell-val">6,95%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:81%;background:#8b5cf6"></div></div><span class="mb-val cell-val">48,6%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:100%;background:#8b5cf6"></div></div><span class="mb-val cell-top">26,3%</span></div></td>
+          <td><span class="cell-top">1,58%</span></td>
+          <td><span class="cell-top">90</span></td>
+          <td><span class="cell-val">33</span></td>
+          <td><span class="cell-val">17</span></div></td>
+          <td><span class="cell-val">91,9%</span></td>
+        </tr>
+        <!-- #5 - Nem sempre ter um produto (4.435) -->
+        <tr>
+          <td><span class="rank-badge rank-n">5</span></td>
+          <td>
+            <div class="post-title">"Nem sempre ter um produto diferenciado..."</div>
+            <div class="post-date">28 abr 2026</div>
+            <div class="post-dur">1:10</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-y">Médio</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:21%;background:#06b6d4"></div></div><span class="mb-val cell-val">4.435</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:21%;background:#06b6d4"></div></div><span class="mb-val cell-val">3.279</span></div></td>
+          <td><span class="cell-val">160</span></td>
+          <td><span class="cell-val">3,61%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:84%;background:#06b6d4"></div></div><span class="mb-val cell-val">50,5%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:71%;background:#06b6d4"></div></div><span class="mb-val cell-val">18,6%</span></div></td>
+          <td><span class="cell-val">0,54%</span></td>
+          <td><span class="cell-val">24</span></td>
+          <td><span class="cell-val">15</span></td>
+          <td><span class="cell-val">2</span></td>
+          <td><span class="cell-val">85,6%</span></td>
+        </tr>
+        <!-- #6 - Essas 3 estratégias (3.893) -->
+        <tr>
+          <td><span class="rank-badge rank-n">6</span></td>
+          <td>
+            <div class="post-title">"Essas 3 estratégias podem mudar..."</div>
+            <div class="post-date">25 nov 2025</div>
+            <div class="post-dur">1:27</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-r">Longo</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:19%;background:#f87171"></div></div><span class="mb-val cell-bot">3.893</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:20%;background:#f87171"></div></div><span class="mb-val cell-bot">3.108</span></div></td>
+          <td><span class="cell-bot">140</span></td>
+          <td><span class="cell-val">3,60%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:67%;background:#f87171"></div></div><span class="mb-val cell-bot">40,3%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:39%;background:#f87171"></div></div><span class="mb-val cell-bot">10,3%</span></div></td>
+          <td><span class="cell-val">0,49%</span></td>
+          <td><span class="cell-val">19</span></td>
+          <td><span class="cell-val">16</span></td>
+          <td><span class="cell-bot">4</span></td>
+          <td><span class="cell-val">95,5%</span></td>
+        </tr>
+        <!-- #7 - O Grupo NF é especialista (3.494) -->
+        <tr>
+          <td><span class="rank-badge rank-n">7</span></td>
+          <td>
+            <div class="post-title">"O Grupo NF é especialista em desenvolver..."</div>
+            <div class="post-date">31 mar 2026</div>
+            <div class="post-dur">1:16</div>
+          </td>
+          <td style="text-align:center"><span class="chip chip-y">Médio</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:17%;background:#94a3b8"></div></div><span class="mb-val cell-bot">3.494</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:16%;background:#94a3b8"></div></div><span class="mb-val cell-bot">2.376</span></div></td>
+          <td><span class="cell-val">133</span></td>
+          <td><span class="cell-val">3,81%</span></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:71%;background:#94a3b8"></div></div><span class="mb-val cell-val">42,5%</span></div></td>
+          <td><div class="mini-bar"><div class="mb-track"><div class="mb-fill" style="width:55%;background:#94a3b8"></div></div><span class="mb-val cell-val">14,5%</span></div></td>
+          <td><span class="cell-bot">0,40%</span></td>
+          <td><span class="cell-bot">14</span></td>
+          <td><span class="cell-bot">13</span></td>
+          <td><span class="cell-val">8</span></td>
+          <td><span class="cell-val">84,3%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="slbl">Visualização por métrica</div>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Views por post</h3>
+      <p>Comparativo de visualizações totais</p>
+      <canvas id="chartViews" height="180"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Taxa de Engajamento vs Hook Rate</h3>
+      <p>Os dois principais indicadores de qualidade do conteúdo</p>
+      <canvas id="chartEng" height="180"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Salvamentos por post</h3>
+      <p>Indicador de valor percebido pelo público</p>
+      <canvas id="chartSaves" height="180"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Retenção vs Duração</h3>
+      <p>Vídeos mais curtos tendem a reter melhor</p>
+      <canvas id="chartRet" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="slbl">O que os dados revelam</div>
+  <div class="insights-row">
+    <div class="ins-card pos">
+      <div class="ins-ico">🏆</div>
+      <div class="ins-title">Vídeos curtos performam melhor</div>
+      <div class="ins-desc">Os dois melhores reels em views têm menos de 1 minuto (0:53 e 0:57). O pior tem 1:27. Existe uma correlação clara: quanto mais curto, melhor a retenção e o alcance. O ideal é manter entre 40–60 segundos.</div>
+    </div>
+    <div class="ins-card pos">
+      <div class="ins-ico">🔥</div>
+      <div class="ins-title">Conteúdo educativo gera muito save</div>
+      <div class="ins-desc">"Os melhores fornecedores" teve 90 saves com apenas 5.694 views — save rate de 1,58%, o melhor do período. "Nem todo problema na peça" teve 251 saves. Conteúdo de valor prático faz o público guardar pra usar depois.</div>
+    </div>
+    <div class="ins-card pos">
+      <div class="ins-ico">🌍</div>
+      <div class="ins-title">97,4% das interações vêm de não seguidores</div>
+      <div class="ins-desc">No reel campeão, quase toda a audiência era nova. O conteúdo está chegando em quem ainda não conhece a NF — exatamente o papel de topo de funil que se espera da influencer. Isso valida a estratégia.</div>
+    </div>
+    <div class="ins-card neg">
+      <div class="ins-ico">⚠️</div>
+      <div class="ins-title">Posts institucionais performam mal</div>
+      <div class="ins-desc">"O Grupo NF é especialista..." foi o reel mais fraco (3.494 views, menor save rate, menor alcance). Conteúdo que fala diretamente da empresa/produto sem gerar valor para o espectador não funciona no feed orgânico.</div>
+    </div>
+    <div class="ins-card neg">
+      <div class="ins-ico">📉</div>
+      <div class="ins-title">Vídeos longos perdem a audiência rápido</div>
+      <div class="ins-desc">O reel de 1:27 ("Essas 3 estratégias") teve a pior retenção (10,3%) e o menor hook rate (40,3%). Com mais de 1 minuto, a queda de audiência nos primeiros 10 segundos é muito severa para o algoritmo distribuir.</div>
+    </div>
+    <div class="ins-card neu">
+      <div class="ins-ico">🎯</div>
+      <div class="ins-title">O que fez o reel campeão viralizar</div>
+      <div class="ins-desc">Duração curta (53s) + gancho contra-intuitivo ("nem todo problema é de qualidade") + alto compartilhamento (188) + 9,1% via Explorar. A combinação desses fatores acendeu o algoritmo. Esse é o formato a replicar.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Análise gerada por <strong>Cardo Marketing</strong> &nbsp;·&nbsp; @priscilafaiadtextil / Gráfica NF &nbsp;·&nbsp; Dados extraídos do Instagram Insights
+</footer>
+
+<script>
+const POSTS = [
+  {label:'Nem todo\nproblema...',   views:20860,eng:7.86,hook:60.2,ret:24.5,saves:251,shares:188,dur:53},
+  {label:'O produto\né o mesmo',   views:11464,eng:3.04,hook:51.8,ret:23.9,saves:39, shares:38, dur:71},
+  {label:'O simples\nato...',       views:7156, eng:3.75,hook:57.5,ret:19.3,saves:27, shares:19, dur:83},
+  {label:'Os melhores\nfornec.',    views:5694, eng:6.95,hook:48.6,ret:26.3,saves:90, shares:33, dur:57},
+  {label:'Nem sempre\nter...',      views:4435, eng:3.61,hook:50.5,ret:18.6,saves:24, shares:15, dur:70},
+  {label:'Essas 3\nestratégias',    views:3893, eng:3.60,hook:40.3,ret:10.3,saves:19, shares:16, dur:87},
+  {label:'O Grupo NF\né esp.',      views:3494, eng:3.81,hook:42.5,ret:14.5,saves:14, shares:13, dur:76},
+];
+
+const COLORS=['#16a34a','#4285f4','#f59e0b','#8b5cf6','#06b6d4','#f87171','#94a3b8'];
+const opts = {
+  responsive:true,
+  plugins:{
+    legend:{display:false},
+    tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toLocaleString('pt-BR')}}
+  }
+};
+
+// Views chart
+new Chart(document.getElementById('chartViews'),{
+  type:'bar',
+  data:{
+    labels:POSTS.map(p=>p.label),
+    datasets:[{data:POSTS.map(p=>p.views),backgroundColor:COLORS,borderRadius:6}]
+  },
+  options:{...opts,scales:{
+    x:{grid:{display:false},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8'}},
+    y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8',callback:v=>v.toLocaleString('pt-BR')}}
+  }}
+});
+
+// Eng vs Hook
+new Chart(document.getElementById('chartEng'),{
+  type:'bar',
+  data:{
+    labels:POSTS.map(p=>p.label),
+    datasets:[
+      {label:'Eng. Rate %',data:POSTS.map(p=>p.eng),backgroundColor:COLORS.map(c=>c+'cc'),borderRadius:4,yAxisID:'y'},
+      {label:'Hook Rate %',data:POSTS.map(p=>p.hook),type:'line',borderColor:'#0c1d73',pointBackgroundColor:'#0c1d73',pointRadius:4,tension:.3,yAxisID:'y2'},
+    ]
+  },
+  options:{
+    responsive:true,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{font:{family:'Nunito',weight:'700',size:10},color:'#6272a0',boxWidth:12}}},
+    scales:{
+      x:{grid:{display:false},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8'}},
+      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8',callback:v=>v+'%'},position:'left'},
+      y2:{grid:{drawOnChartArea:false},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8',callback:v=>v+'%'},position:'right'},
+    }
+  }
+});
+
+// Saves
+new Chart(document.getElementById('chartSaves'),{
+  type:'bar',
+  data:{
+    labels:POSTS.map(p=>p.label),
+    datasets:[{data:POSTS.map(p=>p.saves),backgroundColor:COLORS,borderRadius:6}]
+  },
+  options:{...opts,scales:{
+    x:{grid:{display:false},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8'}},
+    y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8'}}
+  }}
+});
+
+// Retention vs Duration scatter
+new Chart(document.getElementById('chartRet'),{
+  type:'scatter',
+  data:{
+    datasets:[{
+      label:'Posts',
+      data:POSTS.map((p,i)=>({x:p.dur,y:p.ret,label:p.label,color:COLORS[i]})),
+      backgroundColor:COLORS,
+      pointRadius:10,
+      pointHoverRadius:13,
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{
+        label:ctx=>`${ctx.raw.label.replace('\n',' ')}: ${ctx.raw.x}s duração · ${ctx.raw.y}% retenção`
+      }}
+    },
+    scales:{
+      x:{title:{display:true,text:'Duração (segundos)',font:{family:'Nunito',size:10},color:'#9ba8c8'},
+        grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8'},min:40,max:100},
+      y:{title:{display:true,text:'Retenção (%)',font:{family:'Nunito',size:10},color:'#9ba8c8'},
+        grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{family:'Nunito',size:9},color:'#9ba8c8',callback:v=>v+'%'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
