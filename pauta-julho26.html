@@ -54,36 +54,55 @@ h2 em{color:#4ade80;font-style:normal;}
 
 /* CAMPAIGN GRID */
 .camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
-.camp-card{border-radius:14px;padding:22px 20px;}
+.camp-card{border-radius:14px;padding:26px 22px;}
 .camp-card.cc1{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);}
 .camp-card.cc2{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);}
 .camp-card.cc3{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);}
-.camp-name{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.camp-name{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
 .cc1 .camp-name{color:#60a5fa;}
 .cc2 .camp-name{color:#4ade80;}
-.cc3 .camp-name{color:rgba(255,255,255,.4);}
-.camp-invest{font-size:1.6rem;font-weight:900;color:#fff;line-height:1;margin-bottom:12px;}
-.camp-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;}
-.camp-metric-lbl{font-size:.58rem;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.35);letter-spacing:.5px;}
-.camp-metric-v{font-size:1rem;font-weight:900;color:#fff;}
-.camp-summary{display:flex;gap:16px;margin-top:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 20px;align-items:center;}
+.cc3 .camp-name{color:rgba(255,255,255,.5);}
+.camp-invest{font-size:2.4rem;font-weight:900;color:#fff;line-height:1;margin-bottom:16px;}
+.camp-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;}
+.camp-metric-lbl{font-size:.75rem;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.45);letter-spacing:.5px;}
+.camp-metric-v{font-size:1.5rem;font-weight:900;color:#fff;}
+.camp-summary{display:flex;gap:16px;margin-top:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px 24px;align-items:center;}
 .camp-sum-item{text-align:center;flex:1;}
-.camp-sum-lbl{font-size:.58rem;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.35);letter-spacing:.5px;margin-bottom:4px;}
-.camp-sum-v{font-size:1.3rem;font-weight:900;color:#fff;}
+.camp-sum-lbl{font-size:.75rem;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.45);letter-spacing:.5px;margin-bottom:6px;}
+.camp-sum-v{font-size:2rem;font-weight:900;color:#fff;}
 .camp-sum-v.blue{color:#60a5fa;}
 
+/* GOOGLE HERO */
+.g-hero{margin-top:16px;margin-bottom:20px;}
+.g-hero-invest{font-size:3.8rem;font-weight:900;color:#fb923c;line-height:1;letter-spacing:-.5px;}
+.g-hero-lbl{font-size:.8rem;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.g-duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:0;}
+.g-duo-box{border-radius:14px;padding:24px 28px;}
+.g-duo-lbl{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.45);margin-bottom:10px;}
+.g-duo-v{font-size:3rem;font-weight:900;color:#fb923c;line-height:1;}
+
 /* GROUPS */
-.group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
 .group-card{border-radius:14px;padding:22px 20px;}
 .group-card.g1{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);}
 .group-card.g2{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);}
 .group-card.g3{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);}
-.group-num{font-size:2.2rem;font-weight:900;margin-bottom:4px;}
+.group-num{font-size:2.2rem;font-weight:900;margin-bottom:2px;}
 .g1 .group-num{color:#f87171;}
 .g2 .group-num{color:#fbbf24;}
 .g3 .group-num{color:#4ade80;}
-.group-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:10px;}
+.group-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:8px;}
 .group-desc{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.55;}
+.group-comp{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);}
+.group-comp-lbl{font-size:.6rem;font-weight:800;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.5px;}
+.group-comp-val{font-size:.72rem;font-weight:900;}
+.group-comp-arr{font-size:.72rem;font-weight:900;}
+.g1 .group-comp-arr.up{color:#f87171;}
+.g1 .group-comp-arr.dn{color:#4ade80;}
+.g2 .group-comp-arr.up{color:#f87171;}
+.g2 .group-comp-arr.dn{color:#4ade80;}
+.g3 .group-comp-arr.up{color:#4ade80;}
+.g3 .group-comp-arr.dn{color:#f87171;}
 
 /* PROD */
 .prod-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
@@ -181,28 +200,31 @@ h2 em{color:#4ade80;font-style:normal;}
   <!-- SLIDE 2 — GOOGLE ADS JUNHO -->
   <div class="slide s-mid" data-slide="1">
     <div class="badge badge-orange">&#9650; Google Ads · Junho 2026</div>
-    <h2>Google Ads — <em style="color:#fb923c;">R$ 1.321,94</em> investidos.</h2>
-    <div class="g-grid">
-      <div class="g-box">
-        <div class="g-lbl">Investimento</div>
-        <div class="g-val" style="color:#fb923c;">R$ 1.321,94</div>
+    <div class="g-hero">
+      <div class="g-hero-lbl">Total investido</div>
+      <div class="g-hero-invest">R$ 1.321,94</div>
+    </div>
+    <div class="g-duo">
+      <div class="g-duo-box" style="background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);">
+        <div class="g-duo-lbl">Leads gerados</div>
+        <div class="g-duo-v">34</div>
+        <div style="margin-top:8px;font-size:.75rem;color:rgba(255,255,255,.45);">maio: 22 &nbsp;↑ <span style="color:#4ade80;">+55%</span></div>
       </div>
-      <div class="g-box" style="border-color:rgba(251,146,60,.2);background:rgba(251,146,60,.06);">
-        <div class="g-lbl">Leads</div>
-        <div class="g-val" style="color:#fb923c;">34</div>
-      </div>
-      <div class="g-box">
-        <div class="g-lbl">Custo por Lead</div>
-        <div class="g-val" style="color:#fb923c;">R$ 38,88</div>
+      <div class="g-duo-box" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);">
+        <div class="g-duo-lbl">Custo por Lead</div>
+        <div class="g-duo-v">R$ 38,88</div>
+        <div style="margin-top:8px;font-size:.75rem;color:rgba(255,255,255,.45);">maio: R$ 45,97 &nbsp;↓ <span style="color:#4ade80;">−15%</span></div>
       </div>
     </div>
-    <div class="hl-box" style="border-color:rgba(251,146,60,.25);background:rgba(251,146,60,.06);margin-top:20px;">
-      <h3 style="color:#fb923c;">CPL maior, mas intenção mais alta</h3>
-      <p>O Google Ads atinge quem está ativamente procurando por impressão gráfica — são leads com maior intenção de compra. O custo por lead mais elevado é esperado e justificado pela qualidade do contato que chega.</p>
-    </div>
-    <div class="hl-box" style="margin-top:12px;">
-      <h3>Comparativo com maio</h3>
-      <p>Em maio o Google gerou 22 leads com R$ 1.011,35 (CPL R$ 45,97). Em junho: 34 leads com R$ 1.321,94 (CPL R$ 38,88). <strong style="color:#4ade80;">Mais leads, menor custo por lead — o canal está ganhando eficiência.</strong></p>
+    <div style="display:flex;gap:12px;margin-top:14px;">
+      <div class="hl-box" style="margin-top:0;flex:1;border-color:rgba(251,146,60,.25);background:rgba(251,146,60,.06);">
+        <h3 style="color:#fb923c;">CPL maior, intenção mais alta</h3>
+        <p>Google atinge quem busca ativamente por impressão gráfica. Custo maior é justificado pela qualidade do lead — maior chance de fechar.</p>
+      </div>
+      <div class="hl-box" style="margin-top:0;flex:1;">
+        <h3>Canal ganhando eficiência</h3>
+        <p>+12 leads a mais que maio com CPL 15% menor. O Google está rodando melhor mês a mês.</p>
+      </div>
     </div>
   </div>
 
@@ -285,16 +307,34 @@ h2 em{color:#4ade80;font-style:normal;}
         <div class="group-num">~34</div>
         <div class="group-title">Ruído — fora do escopo</div>
         <div class="group-desc">Vaga de emprego (3x), fornecedores tentando vender (lixas, insumos, máquinas, suprimentos, malhas). Figurinhas da copa, saco de pão, carimbo, camiseta. Nunca iam comprar.</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Maio</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~22</span>
+          <span class="group-comp-arr up">↑ +55%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#f87171;">piorou</span>
+        </div>
       </div>
       <div class="group-card g2">
         <div class="group-num">~22</div>
         <div class="group-title">Sem qualificação</div>
         <div class="group-desc">Só deixaram número, sem empresa, produto ou volume claro. Impressão A3, 3 cartões, 6 folhas, 50 sacolas. Consumidor final sem volume mínimo. Tomam tempo e não avançam.</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Maio</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~25</span>
+          <span class="group-comp-arr dn">↓ −12%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#4ade80;">melhorou</span>
+        </div>
       </div>
       <div class="group-card g3">
         <div class="group-num">~30</div>
         <div class="group-title">Qualificados — B2B real</div>
         <div class="group-desc">Empresas com demanda de sacola, cartela, envelopes, book, encartes e convites. General Têxtil, Gollog, SBX Têxtil, Solar Interiores, Outbox, Senac, Vansil, CMW. São os fechamentos de julho.</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Maio</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~20</span>
+          <span class="group-comp-arr up">↑ +50%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#4ade80;">muito melhor</span>
+        </div>
       </div>
     </div>
     <div class="div"></div>
