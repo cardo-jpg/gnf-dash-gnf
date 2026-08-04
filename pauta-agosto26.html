@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gráfica NF — Reunião de Performance · Julho 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif;background:#0a0f1e;}
+
+.deck{width:100%;height:100%;position:relative;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:64px 80px;opacity:0;pointer-events:none;transition:opacity .4s ease,transform .4s ease;transform:translateX(60px);}
+.slide.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.slide.out{opacity:0;transform:translateX(-60px);}
+
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;}
+.nav-dot.active{background:#4ade80;width:24px;border-radius:4px;}
+.nav-arr{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.nav-arr:hover{background:rgba(255,255,255,.12);}
+.slide-num{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.3);min-width:60px;text-align:center;}
+
+.s-cover{background:linear-gradient(135deg,#0d1b3e 0%,#0f2a1a 100%);}
+.s-dark{background:#0d1b2e;}
+.s-green{background:linear-gradient(135deg,#0a1f10 0%,#0d1b3e 100%);}
+.s-mid{background:linear-gradient(135deg,#111827 0%,#0d2030 100%);}
+
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:5px 14px;font-size:.72rem;font-weight:800;color:#4ade80;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;}
+.badge-blue{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.3);color:#60a5fa;}
+.badge-orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:#fb923c;}
+
+h1{font-size:3.2rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.5px;}
+h1 em{color:#4ade80;font-style:normal;}
+h2{font-size:2rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;}
+h2 em{color:#4ade80;font-style:normal;}
+.sub{font-size:1rem;color:rgba(255,255,255,.5);margin-top:12px;font-weight:600;}
+.lead{font-size:1.1rem;color:rgba(255,255,255,.75);line-height:1.65;max-width:760px;}
+
+.div{height:1px;background:rgba(255,255,255,.08);margin:24px 0;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 20px;position:relative;overflow:hidden;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.stat-box.c1::before{background:#4ade80;}
+.stat-box.c2::before{background:#60a5fa;}
+.stat-box.c3::before{background:#f59e0b;}
+.stat-box.c4::before{background:#f87171;}
+.stat-lbl{font-size:.62rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;}
+.stat-v{font-size:2rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.5px;}
+.stat-v.green{color:#4ade80;}
+.stat-v.red{color:#f87171;}
+.stat-s{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:6px;}
+
+.group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.group-card{border-radius:14px;padding:22px 20px;}
+.group-card.g1{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);}
+.group-card.g2{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);}
+.group-card.g3{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);}
+.group-num{font-size:2.2rem;font-weight:900;margin-bottom:4px;}
+.g1 .group-num{color:#f87171;}
+.g2 .group-num{color:#fbbf24;}
+.g3 .group-num{color:#4ade80;}
+.group-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:10px;}
+.group-desc{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.55;}
+.group-comp{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);}
+.group-comp-lbl{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.35);}
+.group-comp-val{font-size:.85rem;font-weight:900;}
+.group-comp-arr{font-size:.7rem;font-weight:900;}
+.group-comp-arr.up{color:#f87171;}
+.group-comp-arr.dn{color:#4ade80;}
+
+.prod-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.prod-tag{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;}
+.prod-name{font-size:.8rem;font-weight:800;color:#fff;}
+.prod-n{font-size:.75rem;font-weight:900;color:#4ade80;margin-left:4px;}
+
+.lead-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+.lead-item{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;}
+.lead-num{width:26px;height:26px;border-radius:50%;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:#4ade80;flex-shrink:0;margin-top:1px;}
+.lead-name{font-size:.85rem;font-weight:800;color:#fff;}
+.lead-desc{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px;}
+.lead-tag{font-size:.6rem;font-weight:800;border-radius:4px;padding:2px 7px;white-space:nowrap;margin-top:4px;display:inline-block;}
+.lt-hot{background:rgba(248,113,113,.15);color:#f87171;}
+.lt-warm{background:rgba(251,191,36,.15);color:#fbbf24;}
+.lt-recu{background:rgba(74,222,128,.15);color:#4ade80;}
+
+.steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+.step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;}
+.step-n{width:32px;height:32px;border-radius:8px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:#4ade80;flex-shrink:0;}
+.step-title{font-size:.82rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.step-desc{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.5;}
+
+.hl-box{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:16px;padding:24px 28px;margin-top:24px;}
+.hl-box h3{font-size:1rem;font-weight:900;color:#4ade80;margin-bottom:8px;}
+.hl-box p{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.65;}
+
+.logo{display:flex;align-items:center;gap:10px;position:fixed;top:24px;left:32px;z-index:100;}
+.logo-box{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#15803d,#22c55e);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:#fff;}
+.logo-name{font-size:.7rem;font-weight:800;color:rgba(255,255,255,.4);letter-spacing:.5px;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;}
+
+/* TIMELINE / COMPARATIVO */
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+.tl-card{border-radius:16px;padding:22px 22px;position:relative;}
+.tl-card.m1{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);}
+.tl-card.m2{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);}
+.tl-card.m3{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.35);box-shadow:0 0 40px rgba(74,222,128,.08);}
+.tl-month{font-size:.7rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}
+.tl-card.m3 .tl-month{color:#4ade80;}
+.tl-metric{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.tl-metric:last-child{border-bottom:none;}
+.tl-mlbl{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.45);}
+.tl-mval{font-size:1.05rem;font-weight:900;color:#fff;}
+.tl-mval.hl{color:#4ade80;}
+.tl-badge{position:absolute;top:-11px;right:16px;background:#4ade80;color:#0a1f10;font-size:.6rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;border-radius:6px;padding:3px 10px;}
+
+.close-card{display:flex;gap:20px;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:14px;padding:18px 22px;align-items:center;}
+.close-card.blue{background:rgba(96,165,250,.06);border-color:rgba(96,165,250,.2);}
+.close-idx{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#4ade80;margin-bottom:6px;}
+.close-card.blue .close-idx{color:#60a5fa;}
+.close-name{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:4px;}
+.close-meta{font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.5;}
+.close-val{margin-left:auto;text-align:right;flex-shrink:0;}
+.close-val .cv-lbl{font-size:.58rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:2px;}
+.close-val .cv-num{font-size:1.6rem;font-weight:900;color:#4ade80;line-height:1;}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <div class="logo-box">NF</div>
+  <span class="logo-name">CARDO MARKETING</span>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — JULHO EM NÚMEROS -->
+  <div class="slide s-green active" data-slide="0">
+    <div class="badge">Julho em números</div>
+    <h2>~96 contatos. <em>4 fechamentos.</em></h2>
+    <div class="stat-grid">
+      <div class="stat-box c1">
+        <div class="stat-lbl">Contatos recebidos</div>
+        <div class="stat-v green">~96</div>
+        <div class="stat-s">no mês de julho</div>
+      </div>
+      <div class="stat-box c2">
+        <div class="stat-lbl">Fechamentos</div>
+        <div class="stat-v">4</div>
+        <div class="stat-s">junho: 1 &nbsp;↑ <span style="color:#4ade80;">+300%</span></div>
+      </div>
+      <div class="stat-box c3">
+        <div class="stat-lbl">Receita registrada</div>
+        <div class="stat-v" style="color:#4ade80;">R$ 8.383</div>
+        <div class="stat-s">junho: R$ 400</div>
+      </div>
+      <div class="stat-box c4">
+        <div class="stat-lbl">Ticket médio</div>
+        <div class="stat-v">R$ 2.096</div>
+        <div class="stat-s">por venda fechada</div>
+      </div>
+    </div>
+    <div class="hl-box" style="margin-top:20px;">
+      <h3>O melhor mês do trimestre — de longe.</h3>
+      <p>Julho fechou 4 vendas somando R$ 8.383 — mais que maio e junho somados. Sozinho, representa <strong style="color:#4ade80;">85% de toda a receita registrada do trimestre</strong>. A base de leads virou negócio: têxtil e sacola puxaram os fechamentos.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 — COMPARATIVO TRIMESTRE -->
+  <div class="slide s-dark" data-slide="1">
+    <div class="badge badge-blue">Comparativo do trimestre</div>
+    <h2>Maio → Junho → <em>Julho</em></h2>
+    <div class="tl-grid">
+      <div class="tl-card m1">
+        <div class="tl-month">Maio 2026</div>
+        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">88</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechamentos</span><span class="tl-mval">2</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Receita</span><span class="tl-mval">R$ 1.110</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Clientes de volta</span><span class="tl-mval">6</span></div>
+      </div>
+      <div class="tl-card m2">
+        <div class="tl-month">Junho 2026</div>
+        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">~102</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechamentos</span><span class="tl-mval">1</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Receita</span><span class="tl-mval">R$ 400</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Clientes de volta</span><span class="tl-mval">3</span></div>
+      </div>
+      <div class="tl-card m3">
+        <div class="tl-badge">melhor mês</div>
+        <div class="tl-month">Julho 2026</div>
+        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">~96</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechamentos</span><span class="tl-mval hl">4</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Receita</span><span class="tl-mval hl">R$ 8.383</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Clientes de volta</span><span class="tl-mval">5</span></div>
+      </div>
+    </div>
+    <div class="hl-box" style="margin-top:22px;">
+      <h3>Mesmo volume de contatos, resultado 20x maior.</h3>
+      <p>O número de contatos ficou estável nos três meses (~90 a 100). O que mudou foi a <strong style="color:#4ade80;">conversão</strong>: em julho o time foi atrás dos leads certos — têxtil, uniformes e sacola — e transformou volume parecido em uma receita muito maior. Não foi mais tráfego; foi melhor aproveitamento.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — OS 4 FECHAMENTOS -->
+  <div class="slide s-green" data-slide="2">
+    <div class="badge">Fechamentos de julho</div>
+    <h2><em>4 vendas</em> fechadas no mês</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+      <div class="close-card">
+        <div>
+          <div class="close-idx">18/07 · Instagram · com Iago</div>
+          <div class="close-name">Blumerie Flower Shop</div>
+          <div class="close-meta">📦 Sacola &nbsp;·&nbsp; 📍 entrou pelo anúncio de sacolas &nbsp;·&nbsp; a maior venda do trimestre</div>
+        </div>
+        <div class="close-val"><div class="cv-lbl">Valor</div><div class="cv-num">R$ 5.450</div></div>
+      </div>
+      <div class="close-card blue">
+        <div>
+          <div class="close-idx" style="color:#60a5fa;">17/07 · Indicação (Fio Expresso)</div>
+          <div class="close-name">Grupo Baruc</div>
+          <div class="close-meta">📦 Cinta de rolo &nbsp;·&nbsp; 📍 indicação de cliente &nbsp;·&nbsp; B2B</div>
+        </div>
+        <div class="close-val"><div class="cv-lbl">Valor</div><div class="cv-num" style="color:#60a5fa;">R$ 1.600</div></div>
+      </div>
+      <div class="close-card">
+        <div>
+          <div class="close-idx">03/07 · WhatsApp</div>
+          <div class="close-name">WK Têxtil — Marcelo</div>
+          <div class="close-meta">📦 Cartela de máscara &nbsp;·&nbsp; 📍 indústria têxtil &nbsp;·&nbsp; B2B</div>
+        </div>
+        <div class="close-val"><div class="cv-lbl">Valor</div><div class="cv-num">R$ 933</div></div>
+      </div>
+      <div class="close-card">
+        <div>
+          <div class="close-idx">24/07 · WhatsApp</div>
+          <div class="close-name">DF Têxtil</div>
+          <div class="close-meta">📦 Lapela branca &nbsp;·&nbsp; 📍 têxtil — mesmo produto que a Sigmatex fechou em junho</div>
+        </div>
+        <div class="close-val"><div class="cv-lbl">Valor</div><div class="cv-num">R$ 400</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — 3 GRUPOS -->
+  <div class="slide s-dark" data-slide="3">
+    <div class="badge badge-orange">Qualidade dos contatos</div>
+    <h2>Os <em>3 grupos</em> de julho</h2>
+    <div class="group-grid">
+      <div class="group-card g1">
+        <div class="group-num">~15</div>
+        <div class="group-title">Ruído — fora do escopo</div>
+        <div class="group-desc">Fornecedores tentando vender pra NF (matéria-prima, elásticos, suprimentos DTF), 5 pedidos de emprego, e serviços fora do perfil (limpeza de placa solar, caderneta de vacina, álbum da copa).</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Junho</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~34</span>
+          <span class="group-comp-arr dn">↓ −56%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#4ade80;">melhorou muito</span>
+        </div>
+      </div>
+      <div class="group-card g2">
+        <div class="group-num">~48</div>
+        <div class="group-title">Sem qualificação</div>
+        <div class="group-desc">Só deixaram número, sem empresa ou volume. Muita sacola de consumidor final sem quantidade (poucas unidades), encadernação avulsa, cartão de visita unitário. Tomam tempo e não avançam.</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Junho</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~22</span>
+          <span class="group-comp-arr up">↑ +118%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#f87171;">piorou</span>
+        </div>
+      </div>
+      <div class="group-card g3">
+        <div class="group-num">~33</div>
+        <div class="group-title">Qualificados — B2B real</div>
+        <div class="group-desc">Têxteis, confecções e uniformes com demanda de cartela, lapela, sacola e catálogo. WK Têxtil, Blumerie, Grupo Baruc, DF Têxtil, Vestsul, VDM, Aleggoria, ENTS. Destes saíram os 4 fechamentos.</div>
+        <div class="group-comp">
+          <span class="group-comp-lbl">Junho</span>
+          <span class="group-comp-val" style="color:rgba(255,255,255,.5);">~30</span>
+          <span class="group-comp-arr dn">↑ +10%</span>
+          <span class="group-comp-lbl" style="margin-left:auto;color:#4ade80;">e converteu 4x</span>
+        </div>
+      </div>
+    </div>
+    <div class="div"></div>
+    <p class="lead" style="font-size:.85rem;">Além dos grupos: <strong style="color:#4ade80;">5 clientes existentes</strong> voltaram em julho — Flavio/AMP, Chiesa Confecções, Hering, Mafra Têxtil e Litoral Tinturaria. Retenção ativa.</p>
+  </div>
+
+  <!-- SLIDE 5 — LEADS QUENTES -->
+  <div class="slide s-mid" data-slide="4">
+    <div class="badge">Prioridade imediata</div>
+    <h2>Leads que não podem <em>ficar na gaveta</em></h2>
+    <div class="lead-list">
+      <div class="lead-item">
+        <div class="lead-num">1</div>
+        <div><div class="lead-name">Vestsul Uniformes</div><div class="lead-desc">23/07 · Cartela de cores · Fabricante de uniformes — perfil têxtil idêntico ao WK e DF, que fecharam este mês</div><span class="lead-tag lt-hot">Urgente — têxtil B2B</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">2</div>
+        <div><div class="lead-name">VDM Têxtil</div><div class="lead-desc">24/07 · Cartela · Chegou por indicação da Stamp Lite · Indicações converteram bem em julho (Grupo Baruc)</div><span class="lead-tag lt-hot">Indicação — reativar</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">3</div>
+        <div><div class="lead-name">ENTS</div><div class="lead-desc">28/07 · Lapela · Mesmo produto que a DF Têxtil (julho) e a Sigmatex (junho) fecharam. O têxtil fecha lapela.</div><span class="lead-tag lt-warm">Alta conversão histórica</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">4</div>
+        <div><div class="lead-name">Aleggoria Tecidos</div><div class="lead-desc">08/07 · Caderno de estilista · Já demonstrou interesse (orçamento em aberto) · Têxtil de maior ticket</div><span class="lead-tag lt-warm">Qualificar</span></div>
+      </div>
+      <div class="lead-item">
+        <div class="lead-num">5</div>
+        <div><div class="lead-name">Amanda · Jacqueline Michelmann</div><div class="lead-desc">Catálogo (15/07) e sacola de semijoias (entrou 2x, 17 e 27/07) · Demanda recorrente com volume real</div><span class="lead-tag lt-recu">Follow-up estruturado</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 — PRODUTOS -->
+  <div class="slide s-mid" data-slide="5">
+    <div class="badge">O que os leads pediram</div>
+    <h2>Sacola lidera o volume, <em>têxtil fecha negócio</em></h2>
+    <div class="prod-row">
+      <div class="prod-tag"><span class="prod-name">Sacola</span><span class="prod-n">~17</span></div>
+      <div class="prod-tag"><span class="prod-name">Diversos / sem especificar</span><span class="prod-n">~22</span></div>
+      <div class="prod-tag"><span class="prod-name">Cartela</span><span class="prod-n">5</span></div>
+      <div class="prod-tag"><span class="prod-name">Encadernação</span><span class="prod-n">4</span></div>
+      <div class="prod-tag"><span class="prod-name">Adesivo</span><span class="prod-n">4</span></div>
+      <div class="prod-tag"><span class="prod-name">Tag</span><span class="prod-n">3</span></div>
+      <div class="prod-tag"><span class="prod-name">Folder / encartes</span><span class="prod-n">3</span></div>
+      <div class="prod-tag"><span class="prod-name">Lapela</span><span class="prod-n">2</span></div>
+      <div class="prod-tag"><span class="prod-name">Blocos</span><span class="prod-n">2</span></div>
+      <div class="prod-tag"><span class="prod-name">Cartão de visita</span><span class="prod-n">2</span></div>
+      <div class="prod-tag"><span class="prod-name">Catálogo</span><span class="prod-n">1</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="two-col" style="gap:20px;margin-top:0;">
+      <div class="hl-box" style="margin-top:0;">
+        <h3>Sacola: o volume virou a maior venda</h3>
+        <p>~17 pedidos de sacola — o produto mais procurado do trimestre. E foi por ele que veio a maior venda: Blumerie (R$ 5.450) entrou pelo Instagram. A campanha de sacolas está trazendo negócio real, não só volume.</p>
+      </div>
+      <div class="hl-box" style="margin-top:0;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06);">
+        <h3 style="color:#60a5fa;">Têxtil: cartela + lapela seguem fechando</h3>
+        <p>3 meses seguidos o fechamento veio do têxtil: Luatex (maio), Sigmatex (junho), WK + DF (julho). Cartela e lapela são o perfil que mais converte. Priorizar esse tipo de lead é o caminho mais curto para venda.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 — PRÓXIMOS PASSOS -->
+  <div class="slide s-dark" data-slide="6">
+    <div class="badge">Plano para agosto</div>
+    <h2>O que fazer para <em>repetir julho</em></h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div><div class="step-title">Escalar a campanha de sacolas</div><div class="step-desc">Trouxe a maior venda do trimestre (Blumerie, R$ 5.450, via Instagram). Aumentar verba e ampliar público desse anúncio.</div></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div><div class="step-title">Priorizar têxtil e uniformes</div><div class="step-desc">Cartela e lapela fecham há 3 meses. Follow-up imediato em Vestsul, VDM, ENTS e Aleggoria antes que esfriem.</div></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div><div class="step-title">Filtro de volume na entrada</div><div class="step-desc">O grupo "sem qualificação" dobrou, puxado por sacola de consumidor final. Pergunta de quantidade mínima logo no primeiro contato.</div></div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div><div class="step-title">Formalizar indicações</div><div class="step-desc">Fio Expresso indicou o Grupo Baruc (R$ 1.600) e a Stamp Lite indicou a VDM. Criar um incentivo simples de indicação.</div></div>
+      </div>
+    </div>
+    <div class="hl-box" style="margin-top:18px;">
+      <h3>A meta de agosto: manter a conversão, não só o volume.</h3>
+      <p>Julho provou que o volume de contatos já é suficiente. O ganho agora está em ir atrás dos leads certos com follow-up rápido — foi isso que transformou ~96 contatos em R$ 8.383.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 — CAPA FINAL -->
+  <div class="slide s-cover" data-slide="7">
+    <div class="badge">Reunião de Performance</div>
+    <h1>Gráfica NF<br><em>Julho 2026</em></h1>
+    <p class="sub">~96 contatos &nbsp;·&nbsp; 4 fechamentos &nbsp;·&nbsp; R$ 8.383 em vendas</p>
+    <div class="div"></div>
+    <p style="color:rgba(255,255,255,.35);font-size:.8rem;font-weight:700;">Cardo Marketing &nbsp;·&nbsp; Gráfica NF / Grupo NF &nbsp;·&nbsp; Agosto de 2026</p>
+  </div>
+
+</div><!-- /deck -->
+
+<div class="nav">
+  <button class="nav-arr" id="prev">←</button>
+  <div id="dots"></div>
+  <button class="nav-arr" id="next">→</button>
+  <span class="slide-num" id="slideNum">1 / 8</span>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const numEl  = document.getElementById('slideNum');
+let cur = 0;
+slides.forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='nav-dot'+(i===0?' active':'');
+  d.onclick=()=>go(i);
+  dotsEl.appendChild(d);
+});
+function go(n){
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('out');
+  setTimeout(()=>slides[cur].classList.remove('out'),400);
+  cur=(n+slides.length)%slides.length;
+  slides[cur].classList.add('active');
+  document.querySelectorAll('.nav-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  numEl.textContent=`${cur+1} / ${slides.length}`;
+}
+document.getElementById('next').onclick=()=>go(cur+1);
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')go(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(cur-1);
+});
+</script>
+</body>
+</html>
