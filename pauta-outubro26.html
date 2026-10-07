@@ -23,18 +23,17 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .s-dark{background:#0d1b2e;}
 .s-green{background:linear-gradient(135deg,#0a1f10 0%,#0d1b3e 100%);}
 .s-mid{background:linear-gradient(135deg,#111827 0%,#0d2030 100%);}
-.s-red{background:linear-gradient(135deg,#2a0d12 0%,#0d1b2e 100%);}
+.s-amber{background:linear-gradient(135deg,#241a08 0%,#0d1b2e 100%);}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:5px 14px;font-size:.72rem;font-weight:800;color:#4ade80;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
 .badge-blue{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.3);color:#60a5fa;}
 .badge-orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:#fb923c;}
-.badge-red{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:#f87171;}
 h1{font-size:3.2rem;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.5px;}
 h1 em{color:#4ade80;font-style:normal;}
 h2{font-size:1.9rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:8px;}
 h2 em{color:#4ade80;font-style:normal;}
-h2 em.red{color:#f87171;}
+h2 em.amber{color:#fbbf24;}
 .sub{font-size:1rem;color:rgba(255,255,255,.5);margin-top:12px;font-weight:600;}
-.lead{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.6;max-width:780px;}
+.lead{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.6;max-width:800px;}
 .div{height:1px;background:rgba(255,255,255,.08);margin:20px 0;}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:26px;}
 .stat-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:22px 18px;position:relative;overflow:hidden;}
@@ -42,7 +41,7 @@ h2 em.red{color:#f87171;}
 .stat-box.c1::before{background:#4ade80;}.stat-box.c2::before{background:#60a5fa;}.stat-box.c3::before{background:#f59e0b;}.stat-box.c4::before{background:#f87171;}
 .stat-lbl{font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:9px;}
 .stat-v{font-size:1.9rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.5px;}
-.stat-v.green{color:#4ade80;}.stat-v.red{color:#f87171;}
+.stat-v.green{color:#4ade80;}.stat-v.red{color:#f87171;}.stat-v.amber{color:#fbbf24;}
 .stat-s{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:6px;}
 .camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:22px;}
 .camp-card{border-radius:14px;padding:20px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
@@ -63,21 +62,28 @@ h2 em.red{color:#f87171;}
 .g-duo-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:16px 14px;}
 .g-duo-lbl{font-size:.6rem;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.4);}
 .g-duo-v{font-size:1.5rem;font-weight:900;color:#fff;margin-top:4px;}
-.tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;}
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
 .tl-card{border-radius:16px;padding:20px 18px;position:relative;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);}
-.tl-card.bad{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.3);}
+.tl-card.good{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.25);}
+.tl-card.low{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.28);}
 .tl-month{font-size:.68rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
-.tl-card.bad .tl-month{color:#f87171;}
+.tl-card.low .tl-month{color:#fbbf24;}
 .tl-metric{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);}
 .tl-metric:last-child{border-bottom:none;}
 .tl-mlbl{font-size:.66rem;font-weight:700;color:rgba(255,255,255,.45);}
-.tl-mval{font-size:1rem;font-weight:900;color:#fff;}
-.tl-mval.red{color:#f87171;}
-.tl-badge{position:absolute;top:-11px;right:14px;background:#f87171;color:#2a0d12;font-size:.58rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;border-radius:6px;padding:3px 10px;}
-.pipe-card{display:flex;gap:16px;background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.2);border-radius:12px;padding:14px 18px;align-items:center;margin-top:10px;}
-.pipe-name{font-size:.95rem;font-weight:900;color:#fff;}
-.pipe-desc{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;}
-.pipe-val{margin-left:auto;font-size:1.2rem;font-weight:900;color:#60a5fa;}
+.tl-mval{font-size:1.05rem;font-weight:900;color:#fff;}
+.tl-mval.green{color:#4ade80;}.tl-mval.amber{color:#fbbf24;}
+.tl-badge{position:absolute;top:-11px;right:14px;background:#fbbf24;color:#241a08;font-size:.58rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase;border-radius:6px;padding:3px 10px;}
+.win-list{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
+.win-item{display:flex;align-items:center;gap:14px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.18);border-radius:12px;padding:13px 18px;}
+.win-ch{width:30px;height:30px;border-radius:8px;background:rgba(74,222,128,.15);color:#4ade80;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.7rem;flex-shrink:0;}
+.win-name{font-size:.92rem;font-weight:800;color:#fff;}
+.win-src{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:1px;}
+.win-val{margin-left:auto;font-size:1.15rem;font-weight:900;color:#4ade80;}
+.pipe-card{display:flex;gap:16px;background:rgba(96,165,250,.06);border:1px solid rgba(96,165,250,.2);border-radius:12px;padding:13px 18px;align-items:center;margin-top:10px;}
+.pipe-name{font-size:.92rem;font-weight:900;color:#fff;}
+.pipe-desc{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:1px;}
+.pipe-val{margin-left:auto;font-size:1.15rem;font-weight:900;color:#60a5fa;}
 .group-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:24px;}
 .group-card{border-radius:14px;padding:20px;}
 .group-card.g1{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);}
@@ -87,19 +93,15 @@ h2 em.red{color:#f87171;}
 .g1 .group-num{color:#f87171;}.g2 .group-num{color:#fbbf24;}.g3 .group-num{color:#4ade80;}
 .group-title{font-size:.8rem;font-weight:800;color:#fff;margin-bottom:8px;}
 .group-desc{font-size:.73rem;color:rgba(255,255,255,.5);line-height:1.5;}
-.prod-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;}
-.prod-tag{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:9px 15px;}
-.prod-name{font-size:.8rem;font-weight:800;color:#fff;}
-.prod-n{font-size:.75rem;font-weight:900;color:#4ade80;margin-left:4px;}
 .steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px;}
 .step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start;}
 .step-n{width:30px;height:30px;border-radius:8px;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:#4ade80;flex-shrink:0;}
 .step-title{font-size:.82rem;font-weight:800;color:#fff;margin-bottom:3px;}
 .step-desc{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.45;}
 .hl-box{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:16px;padding:20px 26px;margin-top:20px;}
-.hl-box.warn{background:rgba(248,113,113,.06);border-color:rgba(248,113,113,.22);}
+.hl-box.amber{background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.22);}
 .hl-box h3{font-size:.98rem;font-weight:900;color:#4ade80;margin-bottom:6px;}
-.hl-box.warn h3{color:#f87171;}
+.hl-box.amber h3{color:#fbbf24;}
 .hl-box p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.6;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .logo{display:flex;align-items:center;gap:10px;position:fixed;top:22px;left:30px;z-index:100;}
@@ -112,18 +114,18 @@ h2 em.red{color:#f87171;}
 <div class="deck" id="deck">
 
   <!-- 1 SETEMBRO EM NÚMEROS -->
-  <div class="slide s-red active" data-slide="0">
-    <div class="badge badge-red">Setembro em números</div>
-    <h2>122 contatos, R$ 2.296 investidos. <em class="red">0 venda do marketing.</em></h2>
+  <div class="slide s-amber active" data-slide="0">
+    <div class="badge" style="background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.3);color:#fbbf24;">Setembro em números</div>
+    <h2>121 contatos, R$ 4.850 fechado. <em class="amber">Mas nada veio dos anúncios.</em></h2>
     <div class="stat-grid">
-      <div class="stat-box c1"><div class="stat-lbl">Contatos recebidos</div><div class="stat-v">122</div><div class="stat-s">volume estável · ago: 124</div></div>
-      <div class="stat-box c2"><div class="stat-lbl">Leads de anúncios</div><div class="stat-v">~74</div><div class="stat-s">35 Google · 39 Meta</div></div>
-      <div class="stat-box c3"><div class="stat-lbl">Investido em mídia</div><div class="stat-v">R$ 2.296</div><div class="stat-s">Meta R$ 1.082 · Google R$ 1.214</div></div>
-      <div class="stat-box c4"><div class="stat-lbl">Fechamento do marketing</div><div class="stat-v red">R$ 0</div><div class="stat-s">as 2 vendas foram Febratex</div></div>
+      <div class="stat-box c1"><div class="stat-lbl">Contatos recebidos</div><div class="stat-v">121</div><div class="stat-s">volume estável · ago: 124</div></div>
+      <div class="stat-box c2"><div class="stat-lbl">Fechado no mês</div><div class="stat-v green">R$ 4.850</div><div class="stat-s">3 vendas · 100% Febratex</div></div>
+      <div class="stat-box c3"><div class="stat-lbl">Investido em mídia</div><div class="stat-v">R$ 2.296</div><div class="stat-s">~74 leads · Meta + Google</div></div>
+      <div class="stat-box c4"><div class="stat-lbl">Fechado via anúncios</div><div class="stat-v amber">R$ 0</div><div class="stat-s">nenhum dos 3 veio de mídia</div></div>
     </div>
-    <div class="hl-box warn">
-      <h3>A mídia trouxe volume, mas nenhuma venda veio dela.</h3>
-      <p>Setembro teve 74 leads de anúncios e R$ 2.296 investidos. As únicas 2 vendas do mês — Kapão (R$ 2.550) e Razai (R$ 600) — vieram da <strong>Febratex</strong>, que não entra no resultado da campanha. O problema não é falta de lead: é que o <strong style="color:#f87171;">lead pago não está fechando.</strong></p>
+    <div class="hl-box amber">
+      <h3>Mês fraco de fechamento — e todo ele veio da feira.</h3>
+      <p>As 3 vendas de setembro (Kapão R$ 2.550, Casa Rima R$ 1.700, Razai R$ 600) têm origem <strong>Febratex</strong> na planilha. Os ~74 leads pagos geraram conversa, mas nenhum fechou no mês. Não é que a mídia não funcione — <strong>em setembro ela não converteu em venda</strong>. É esse ponto que precisamos destravar.</p>
     </div>
   </div>
 
@@ -155,9 +157,9 @@ h2 em.red{color:#f87171;}
       <div style="width:1px;height:36px;background:rgba(255,255,255,.08);"></div>
       <div style="text-align:center;"><div class="camp-sum-lbl">Custo por conversa</div><div class="camp-sum-v blue">R$ 27,76</div></div>
     </div>
-    <div class="hl-box warn" style="margin-top:16px;">
-      <h3>O objetivo "Conversas" atrai quem fala, não quem compra.</h3>
-      <p>A campanha é otimizada para gerar mensagem no WhatsApp — e traz muita conversa de baixa intenção (foto 3x4, convite, crachá, chaveiro). A Cartela ficou cara (R$ 39,90/conversa) e a Sacola subiu de R$ 9,60 (ago) para R$ 16,63. Volume sim, intenção de compra não.</p>
+    <div class="hl-box amber" style="margin-top:16px;">
+      <h3>O objetivo "Conversas" traz volume, mas intenção baixa.</h3>
+      <p>A campanha otimiza para gerar mensagem no WhatsApp — e parte vem de baixa intenção (foto 3x4, convite, crachá). A Cartela ficou cara (R$ 39,90/conversa) e a Sacola subiu de R$ 9,60 (ago) para R$ 16,63. Vale testar objetivo de lead qualificado e apertar o público têxtil.</p>
     </div>
   </div>
 
@@ -176,107 +178,103 @@ h2 em.red{color:#f87171;}
     </div>
     <div class="two-col" style="margin-top:16px;">
       <div class="hl-box" style="margin-top:0;">
-        <h3>O canal certo — quem busca, quer comprar</h3>
-        <p>Taxa de conversão de 12,87% e CTR de 11,54%. O Google traz <strong>intenção real</strong> (quem pesquisa "gráfica têxtil"). É o oposto do Meta "Conversas". O problema aqui não é qualidade — é <strong>volume</strong>: só 2.358 impressões no mês.</p>
+        <h3>O canal que já fechou os maiores negócios do ano</h3>
+        <p>Foi o Google que trouxe a <strong>SENAI (R$ 15.190)</strong> e a <strong>General Linhas (R$ 7.980)</strong> em 2026. Traz quem pesquisa e quer comprar: 12,87% de taxa de conversão. Em setembro, porém, está pequeno — só 2.358 impressões.</p>
       </div>
       <div class="hl-box" style="margin-top:0;border-color:rgba(251,146,60,.3);background:rgba(251,146,60,.06);">
-        <h3 style="color:#fb923c;">Está entregando pouco — dá pra escalar</h3>
-        <p>Com CPL saudável (R$ 34) e só 272 cliques no mês, há muito espaço. Aumentar verba + ampliar palavras-chave + publicar o rascunho parado traz mais lead qualificado quase na mesma eficiência.</p>
+        <h3 style="color:#fb923c;">Dá pra escalar sem perder eficiência</h3>
+        <p>CPL saudável (R$ 34) e só 272 cliques no mês. Aumentar verba + ampliar palavras-chave têxteis + publicar o rascunho parado traz mais lead qualificado — o oposto do que o Meta "Conversas" entrega.</p>
       </div>
     </div>
   </div>
 
-  <!-- 4 CONSOLIDADO / O FURO -->
-  <div class="slide s-red" data-slide="3">
-    <div class="badge badge-red">O furo do mês</div>
-    <h2>Volume cheio, <em class="red">funil vazio.</em></h2>
-    <div class="stat-grid">
-      <div class="stat-box c1"><div class="stat-lbl">Investido</div><div class="stat-v">R$ 2.296</div><div class="stat-s">Meta + Google</div></div>
-      <div class="stat-box c2"><div class="stat-lbl">Leads gerados</div><div class="stat-v">~74</div><div class="stat-s">CPL R$ 31</div></div>
-      <div class="stat-box c3"><div class="stat-lbl">Viraram orçamento</div><div class="stat-v" style="color:#f59e0b;">~0</div><div class="stat-s">nenhum com origem Meta/Google</div></div>
-      <div class="stat-box c4"><div class="stat-lbl">Viraram venda</div><div class="stat-v red">0</div><div class="stat-s">retorno da mídia no mês</div></div>
+  <!-- 4 COMPARATIVO REAL -->
+  <div class="slide s-dark" data-slide="3">
+    <div class="badge badge-blue">Comparativo do trimestre · fechamentos reais</div>
+    <h2>Julho e agosto fecharam forte. <em class="amber">Setembro caiu.</em></h2>
+    <div class="tl-grid">
+      <div class="tl-card good"><div class="tl-month">Julho</div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechado</span><span class="tl-mval green">R$ 10.643</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Vendas</span><span class="tl-mval">6</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Destaque</span><span class="tl-mval" style="font-size:.76rem;">Blumerie (Insta) R$ 5.450</span></div>
+      </div>
+      <div class="tl-card good"><div class="tl-month">Agosto</div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechado</span><span class="tl-mval green">R$ 15.678</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Vendas</span><span class="tl-mval">2</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Destaque</span><span class="tl-mval" style="font-size:.76rem;">Kiv R$ 11.978</span></div>
+      </div>
+      <div class="tl-card low"><div class="tl-badge">abaixo da média</div><div class="tl-month">Setembro</div>
+        <div class="tl-metric"><span class="tl-mlbl">Fechado</span><span class="tl-mval amber">R$ 4.850</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Vendas</span><span class="tl-mval">3</span></div>
+        <div class="tl-metric"><span class="tl-mlbl">Origem</span><span class="tl-mval" style="font-size:.76rem;">100% Febratex</span></div>
+      </div>
     </div>
-    <div class="hl-box warn">
-      <h3>Os 74 leads pagos sumiram no caminho — e os orçamentos vieram de outro lugar.</h3>
-      <p>Nenhum dos orçamentos ou vendas de setembro tem origem Meta/Google na planilha. Todos vêm de <strong>Febratex, prospecção ou indicação</strong>. Ou seja: a mídia está gerando conversa, mas quem <strong>fecha</strong> chega por outros canais. É isso que precisamos virar em outubro.</p>
+    <div class="hl-box amber">
+      <h3>Setembro faturou menos de 1/3 de agosto — e nada veio dos anúncios.</h3>
+      <p>Agosto teve a maior venda do trimestre (Kiv, R$ 11.978). Setembro caiu para R$ 4.850, todos da Febratex. O volume de contatos seguiu igual (~121), então o problema não é topo de funil — é <strong>conversão de lead em venda</strong> no mês.</p>
     </div>
   </div>
 
-  <!-- 5 PIPELINE FEIRA -->
+  <!-- 5 OS ANÚNCIOS FECHAM -->
   <div class="slide s-green" data-slide="4">
-    <div class="badge">Pipeline da Febratex & prospecção</div>
-    <h2>O que a <em>feira</em> deixou — fora do marketing</h2>
-    <p class="lead" style="font-size:.88rem;margin-top:2px;">Honestidade total: isso não é resultado da mídia, mas é dinheiro real no radar do cliente. ~R$ 20,6 mil em orçamentos abertos + 2 vendas já fechadas.</p>
-    <div style="margin-top:16px;">
-      <div class="pipe-card"><div><div class="pipe-name">Ocean Têxtil</div><div class="pipe-desc">Cartela · prospecção + Febratex · orçamento enviado</div></div><div class="pipe-val">R$ 7.500</div></div>
-      <div class="pipe-card"><div><div class="pipe-name">Luli Malhas</div><div class="pipe-desc">Cartela de cores · prospecção + Febratex · em análise</div></div><div class="pipe-val">R$ 5.400</div></div>
-      <div class="pipe-card"><div><div class="pipe-name">Bruna Malhas</div><div class="pipe-desc">Cartela de cores · indicação + Febratex · orçamento enviado</div></div><div class="pipe-val">R$ 4.000</div></div>
-      <div class="pipe-card"><div><div class="pipe-name">JFR Confecções · Casa Rima</div><div class="pipe-desc">Lapela · Febratex · aprovados (R$ 2.060 + R$ 1.700)</div></div><div class="pipe-val">R$ 3.760</div></div>
+    <div class="badge">A prova do ano</div>
+    <h2>Os anúncios <em>fecham</em> — e grande</h2>
+    <p class="lead" style="font-size:.9rem;margin-top:2px;">Setembro foi a exceção, não a regra. Em 2026, mídia paga (Google + Instagram) já trouxe mais de <strong style="color:#4ade80;">R$ 35 mil</strong> em vendas fechadas.</p>
+    <div class="win-list">
+      <div class="win-item"><div class="win-ch">G</div><div><div class="win-name">SENAI</div><div class="win-src">Google · fevereiro · diversos</div></div><div class="win-val">R$ 15.190</div></div>
+      <div class="win-item"><div class="win-ch">G</div><div><div class="win-name">General Linhas</div><div class="win-src">Google · abril · cartelas</div></div><div class="win-val">R$ 7.980</div></div>
+      <div class="win-item"><div class="win-ch">IG</div><div><div class="win-name">Blumerie Flower Shop</div><div class="win-src">Instagram · julho · sacola</div></div><div class="win-val">R$ 5.450</div></div>
+      <div class="win-item"><div class="win-ch">IG</div><div><div class="win-name">Comercial Casanova</div><div class="win-src">Instagram · maio · sacola (2 pedidos)</div></div><div class="win-val">R$ 4.422</div></div>
     </div>
-    <div class="hl-box" style="margin-top:14px;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06);">
-      <h3 style="color:#60a5fa;">Vendas já fechadas da feira: Kapão R$ 2.550 + Razai R$ 600.</h3>
-      <p>A Febratex segue sendo a melhor fonte de negócio têxtil do cliente — mas é canal próprio dele, não da campanha. O desafio é fazer a <strong>mídia</strong> gerar pipeline igual a esse.</p>
+    <div class="hl-box" style="margin-top:14px;">
+      <h3>O canal funciona. O que faltou em setembro foi conversão, não lead.</h3>
+      <p>Por isso o plano não é "desligar a mídia" — é afinar: escalar o Google (que fecha os maiores) e tirar o ruído do Meta "Conversas". A máquina já provou que vende.</p>
     </div>
   </div>
 
   <!-- 6 QUALIDADE -->
   <div class="slide s-dark" data-slide="5">
     <div class="badge badge-orange">Qualidade dos contatos</div>
-    <h2>30% do mês foi <em class="red">ruído puro</em></h2>
+    <h2>30% do mês foi <em class="amber">ruído</em></h2>
     <div class="group-grid">
       <div class="group-card g1"><div class="group-num">~36</div><div class="group-title">Ruído — fora do escopo</div><div class="group-desc">Foto 3x4, convite de casamento/aniversário, crachá, chaveiro, carimbo, adesivo de carro, patrocínio de desfile, vaga de emprego, ofertas de frete/sistema/matéria-prima. Nunca iam comprar.</div></div>
       <div class="group-card g2"><div class="group-num">~55</div><div class="group-title">Sem qualificação</div><div class="group-desc">"Diversos" sem produto claro, número solto sem nome, cartão de visita e sacola avulsa de consumidor final. Tomam tempo do atendimento e não avançam.</div></div>
       <div class="group-card g3"><div class="group-num">~17</div><div class="group-title">Qualificados — têxtil B2B</div><div class="group-desc">Cartela, lapela, cartela de fios, mostruário, etiqueta de tecido. NB Fios, ITG, Apolo, Ocean, Luli, JFR — a maioria com origem Febratex, não da mídia.</div></div>
     </div>
-    <div class="hl-box warn">
+    <div class="hl-box amber">
       <h3>A mídia enche o topo de funil de gente errada.</h3>
-      <p>Com 36 contatos de ruído e 55 sem qualificação, só ~17 eram têxtil de verdade — e quase todos vieram da feira. A campanha "Conversas" do Meta é a principal suspeita de atrair esse público amplo e barato que não fecha.</p>
+      <p>36 contatos de ruído e 55 sem qualificação: só ~17 eram têxtil de verdade. A campanha "Conversas" do Meta é a principal suspeita de atrair esse público amplo e barato que não fecha — e some no caminho.</p>
     </div>
   </div>
 
-  <!-- 7 COMPARATIVO ROI -->
-  <div class="slide s-mid" data-slide="6">
-    <div class="badge badge-blue">A tendência que precisa virar</div>
-    <h2>Volume igual, <em class="red">venda caindo</em></h2>
-    <div class="tl-grid">
-      <div class="tl-card"><div class="tl-month">Julho</div>
-        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">~96</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Venda marketing</span><span class="tl-mval">R$ 8.383</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Origem</span><span class="tl-mval" style="font-size:.78rem;">Insta/zap/indic.</span></div>
-      </div>
-      <div class="tl-card"><div class="tl-month">Agosto</div>
-        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">124</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Venda marketing</span><span class="tl-mval red">~R$ 0</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Vendas reais</span><span class="tl-mval" style="font-size:.78rem;">Febratex</span></div>
-      </div>
-      <div class="tl-card bad"><div class="tl-badge">atenção</div><div class="tl-month">Setembro</div>
-        <div class="tl-metric"><span class="tl-mlbl">Contatos</span><span class="tl-mval">122</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Venda marketing</span><span class="tl-mval red">R$ 0</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Vendas reais</span><span class="tl-mval" style="font-size:.78rem;">Febratex</span></div>
-      </div>
-      <div class="tl-card"><div class="tl-month">Investido ago+set</div>
-        <div class="tl-metric"><span class="tl-mlbl">Mídia</span><span class="tl-mval">R$ 4.747</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Venda da mídia</span><span class="tl-mval red">R$ 0</span></div>
-        <div class="tl-metric"><span class="tl-mlbl">Status</span><span class="tl-mval" style="font-size:.78rem;color:#f87171;">insustentável</span></div>
-      </div>
+  <!-- 7 PIPELINE -->
+  <div class="slide s-green" data-slide="6">
+    <div class="badge">Pipeline aberto · a faturar em outubro</div>
+    <h2>Orçamentos <em>enviados</em> esperando resposta</h2>
+    <p class="lead" style="font-size:.88rem;margin-top:2px;">~R$ 19 mil em orçamentos ainda abertos — follow-up imediato pode virar faturamento de outubro.</p>
+    <div style="margin-top:16px;">
+      <div class="pipe-card"><div><div class="pipe-name">Ocean Têxtil</div><div class="pipe-desc">Cartela · prospecção + Febratex · orçamento enviado</div></div><div class="pipe-val">R$ 7.500</div></div>
+      <div class="pipe-card"><div><div class="pipe-name">Luli Malhas</div><div class="pipe-desc">Cartela de cores · prospecção + Febratex · em análise</div></div><div class="pipe-val">R$ 5.400</div></div>
+      <div class="pipe-card"><div><div class="pipe-name">Bruna Malhas</div><div class="pipe-desc">Cartela de cores · indicação + Febratex · enviado</div></div><div class="pipe-val">R$ 4.000</div></div>
+      <div class="pipe-card"><div><div class="pipe-name">JFR Confecções</div><div class="pipe-desc">Lapela · Febratex · orçado</div></div><div class="pipe-val">R$ 2.060</div></div>
     </div>
-    <div class="hl-box warn">
-      <h3>Dois meses pagando por lead que não fecha. Hora de mudar o jogo.</h3>
-      <p>Julho ainda fechou pelo marketing. Agosto e setembro, as vendas vieram só da feira — enquanto a mídia consumiu ~R$ 4.750 sem retorno atribuível. Não é falta de verba nem de lead: é a <strong>estratégia de campanha</strong> trazendo o público errado.</p>
+    <div class="hl-box" style="margin-top:14px;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06);">
+      <h3 style="color:#60a5fa;">A feira segue enchendo o pipeline — e isso é bom.</h3>
+      <p>Mas repare: todo o pipeline é Febratex/prospecção/indicação. O desafio de outubro é fazer a <strong>mídia</strong> gerar orçamento igual — e converter esses em venda.</p>
     </div>
   </div>
 
   <!-- 8 PLANO -->
   <div class="slide s-dark" data-slide="7">
     <div class="badge">Plano de virada · Outubro</div>
-    <h2>Comprar <em>intenção</em>, não conversa</h2>
+    <h2>Escalar o que fecha, cortar o que <em class="amber">só conversa</em></h2>
     <div class="steps-grid">
-      <div class="step"><div class="step-n">1</div><div><div class="step-title">Escalar o Google Search</div><div class="step-desc">É o canal que traz quem quer comprar (35 leads a R$34). Aumentar verba, ampliar palavras-chave têxteis e publicar o rascunho parado.</div></div></div>
-      <div class="step"><div class="step-n">2</div><div><div class="step-title">Repensar o Meta "Conversas"</div><div class="step-desc">Trocar o objetivo (de mensagem para site/lead qualificado) ou apertar o público só pra têxtil B2B. A Cartela a R$39,90 sem fechar precisa de novo criativo ou corte.</div></div></div>
-      <div class="step"><div class="step-n">3</div><div><div class="step-title">Filtro de volume no 1º contato</div><div class="step-desc">30% é ruído. Pergunta de "qual produto + quantidade" logo na entrada corta foto 3x4, convite e consumidor avulso.</div></div></div>
-      <div class="step"><div class="step-n">4</div><div><div class="step-title">Medir por orçamento, não por conversa</div><div class="step-desc">Marcar na planilha a origem de cada orçamento. Só assim sabemos se a mídia virou pipeline — hoje está cego.</div></div></div>
-      <div class="step"><div class="step-n">5</div><div><div class="step-title">Converter o pipeline da feira</div><div class="step-desc">~R$ 20,6 mil em orçamentos abertos (Ocean, Luli, Bruna, JFR, Casa Rima). Follow-up imediato pra faturar em outubro.</div></div></div>
-      <div class="step"><div class="step-n">6</div><div><div class="step-title">Confirmar o destino do anúncio</div><div class="step-desc">Validar pra onde o Google manda (site antigo x LP nova) e garantir que a página de destino é a que converte melhor.</div></div></div>
+      <div class="step"><div class="step-n">1</div><div><div class="step-title">Escalar o Google Search</div><div class="step-desc">É o canal que trouxe SENAI e General Linhas. Aumentar verba, ampliar palavras-chave têxteis e publicar o rascunho parado.</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-title">Repensar o Meta "Conversas"</div><div class="step-desc">Trocar objetivo (lead qualificado) ou apertar público só têxtil B2B. A Cartela a R$39,90 sem fechar precisa de novo criativo ou corte.</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-title">Filtro de volume no 1º contato</div><div class="step-desc">30% é ruído. Pergunta de "produto + quantidade" logo na entrada corta foto 3x4, convite e consumidor avulso.</div></div></div>
+      <div class="step"><div class="step-n">4</div><div><div class="step-title">Marcar a origem de todo orçamento</div><div class="step-desc">Hoje a planilha tem muita origem em branco (a Kiv de R$11.978 em agosto, por ex.). Preencher sempre pra saber o que a mídia gera.</div></div></div>
+      <div class="step"><div class="step-n">5</div><div><div class="step-title">Faturar o pipeline da feira</div><div class="step-desc">~R$ 19 mil abertos (Ocean, Luli, Bruna, JFR). Follow-up imediato pra fechar em outubro.</div></div></div>
+      <div class="step"><div class="step-n">6</div><div><div class="step-title">Confirmar o destino do anúncio</div><div class="step-desc">Validar pra onde o Google manda (site antigo x LP nova) e garantir a página que converte melhor.</div></div></div>
     </div>
   </div>
 
@@ -284,7 +282,7 @@ h2 em.red{color:#f87171;}
   <div class="slide s-cover" data-slide="8">
     <div class="badge">Reunião de Performance</div>
     <h1>Gráfica NF<br/><em>Setembro 2026</em></h1>
-    <p class="sub">122 contatos &nbsp;·&nbsp; 74 leads de mídia &nbsp;·&nbsp; R$ 2.296 investidos &nbsp;·&nbsp; 0 venda do marketing</p>
+    <p class="sub">121 contatos &nbsp;·&nbsp; R$ 4.850 fechado (100% Febratex) &nbsp;·&nbsp; R$ 2.296 em mídia &nbsp;·&nbsp; 0 venda via anúncios</p>
     <div class="div"></div>
     <p style="color:rgba(255,255,255,.35);font-size:.8rem;font-weight:700;">Cardo Marketing &nbsp;·&nbsp; Gráfica NF / Grupo NF &nbsp;·&nbsp; Outubro de 2026</p>
   </div>
